@@ -300,10 +300,15 @@ class LinuxExtractor(Extractor):
         self.nvtoolsext_fmt = "lib{0}.so*"
         self.nvtoolsextpath = None
         self.libdir = "lib"
+        self.machine = platform.machine()
 
-        if platform.machine() == "ppc64le":
+        if self.machine == "ppc64le":
             # Power 8 Arch
             self.runfile = f"cuda_{version}_{version_patch}_linux_ppc64le.run"
+            self.embedded_blob = None
+        elif "arm" in self.machine or "aarch64" in self.machine:
+            # ARM 64 Arch
+            self.runfile = f"cuda_{version}_{version_patch}_linux_sbsa.run"
             self.embedded_blob = None
         else:
             # x86-64 Arch
