@@ -1,1 +1,4 @@
 conda_forge_output_validation: true
+channels:
+  targets:
+    - ["conda-forge", "test"]
