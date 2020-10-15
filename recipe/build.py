@@ -352,8 +352,7 @@ class LinuxExtractor(Extractor):
                 # "--nox11" runfile command prevents desktop GUI on local install
                 cmd = [
                     os.path.join(self.src_dir, self.runfile),
-                    #f"--installpath={tmpd}",
-                    f"--extract={tmpd}",
+                    f"--installpath={tmpd}",
                     "--toolkit",
                     "--silent",
                     "--override",
