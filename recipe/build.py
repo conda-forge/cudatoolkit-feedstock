@@ -301,19 +301,19 @@ class LinuxExtractor(Extractor):
         self.libdir = "lib"
         self.machine = platform.machine()
 
-        cuda_libs = ["cuinj64"]
         if self.machine == "ppc64le":
             # Power 8 Arch
-            cuda_libs.append("accinj64")
+            cuda_libs = ["accinj64", "cuinj64"]
             self.runfile = f"cuda_{version}_{version_patch}_linux_ppc64le.run"
             self.embedded_blob = None
         elif "arm" in self.machine or "aarch64" in self.machine:
             # ARM 64 Arch
+            cuda_libs = []
             self.runfile = f"cuda_{version}_{version_patch}_linux_sbsa.run"
             self.embedded_blob = None
         else:
             # x86-64 Arch
-            cuda_libs.append("accinj64")
+            cuda_libs = ["accinj64", "cuinj64"]
             self.runfile = f"cuda_{version}_{version_patch}_linux.run"
             self.embedded_blob = None
         self.cuda_libraries.extend(cuda_libs)
