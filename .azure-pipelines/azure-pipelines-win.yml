@@ -17,6 +17,10 @@ jobs:
 
   steps:
     - script: |
+        choco install nvidia-display-driver -fdv -y
+      displayName: Install NVIDIA Display Driver
+
+    - script: |
         choco install vcpython27 -fdv -y --debug
       condition: contains(variables['CONFIG'], 'vs2008')
       displayName: Install vcpython27.msi (if needed)
@@ -72,7 +76,7 @@ jobs:
         call activate base
         run_conda_forge_build_setup
       displayName: conda-forge build setup
-    
+
 
     # Special cased version setting some more things!
     - script: |
