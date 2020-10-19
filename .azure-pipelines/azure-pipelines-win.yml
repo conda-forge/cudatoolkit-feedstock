@@ -17,7 +17,7 @@ jobs:
 
   steps:
     - script: |
-        choco install nvidia-display-driver -fdv -y --debug
+        choco install geforce-game-ready-driver -fdv -y --debug
       displayName: Install NVIDIA Display Driver
 
     - script: |
