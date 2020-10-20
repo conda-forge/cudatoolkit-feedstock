@@ -22,6 +22,12 @@ jobs:
       displayName: Install NVIDIA Display Driver
 
     - script: |
+        choco install cuda -fdv -y --debug
+#--skip-powershell
+#        choco install geforce-game-ready-driver -fdv -y --debug --skip-powershell
+      displayName: Install CUDA
+
+    - script: |
         dir nvToolsExt.h /s
       displayName: Find NvToolsExt Header
 
