@@ -22,7 +22,7 @@ jobs:
       displayName: Install NVIDIA Display Driver
 
     - script: |
-        choco install cuda --version 11.0 -fdv -y --debug
+        choco install cuda --version 11.0.3 -fdv -y --debug
       displayName: Install CUDA
 
 #    - script: |
