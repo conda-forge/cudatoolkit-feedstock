@@ -22,6 +22,10 @@ jobs:
       displayName: Install NVIDIA Display Driver
 
     - script: |
+        dir nvToolsExt.h /s
+      displayName: Find NvToolsExt Header
+
+    - script: |
         choco install vcpython27 -fdv -y --debug
       condition: contains(variables['CONFIG'], 'vs2008')
       displayName: Install vcpython27.msi (if needed)
