@@ -23,10 +23,6 @@ source:
   - url: https://developer.download.nvidia.com/compute/cuda/{{ version }}/local_installers/cuda_{{ version }}_{{ version_patch }}_win10.exe  # [win]
     md5: 80ae0fdbe04759123f3cab81f2aadabd  # [win]
 
-  # the following URL needs to be fixed for aarch64 support
-  - url: https://developer.download.nvidia.com/compute/cuda/{{ version }}/local_installers/cuda_{{ version }}_{{ version_patch }}_linux_FIXME.run  # [aarch64]
-    md5: 7f4e95eb69e2241dd278fc2002dfd66a  # [aarch64]
-
 build:
   number: 0
   script_env:
