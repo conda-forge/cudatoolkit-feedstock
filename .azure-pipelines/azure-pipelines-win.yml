@@ -17,7 +17,8 @@ jobs:
 
   steps:
     - script: |
-        choco install geforce-game-ready-driver -fdv -y --debug --skip-powershell
+        choco install nvidia-display-driver -fdv -y --debug --skip-powershell
+#        choco install geforce-game-ready-driver -fdv -y --debug --skip-powershell
       displayName: Install NVIDIA Display Driver
 
     - script: |
