@@ -205,10 +205,14 @@ class WindowsExtractor(Extractor):
         nvidias = ["NVIDIA Corporation", "NVIDIA GPU Computing Toolkit"]
         nvtxs = ["NVToolsExt", "NvToolsExt", "nvToolsExt"]
         for pf, nvidia, nvtx in itertools.product(pfs, nvidias, nvtxs):
-            nvt_path = os.path.join("c:" + os.sep, pf, nvidia, nvtx, "bin")
+            nvt_path = os.path.join("C:" + os.sep, pf, nvidia, nvtx, "bin")
+            print(f"Looking for {nvt_path}...", end="")
             if os.path.exists(nvt_path):
                 self.nvtoolsextpath = nvt_path
+                print("found!")
                 break
+            else:
+                print("absent.")
         else:
             self.nvtoolsextpath = None
         self.libdir = "Library/bin"
