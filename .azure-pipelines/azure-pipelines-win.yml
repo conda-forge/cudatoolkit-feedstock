@@ -16,10 +16,10 @@ jobs:
     CONDA_BLD_PATH: D:\\bld\\
 
   steps:
-    - script: |
-        choco install nvidia-display-driver -fdv -y --debug --skip-powershell
+    #- script: |
+    #    choco install nvidia-display-driver -fdv -y --debug --skip-powershell
 #        choco install geforce-game-ready-driver -fdv -y --debug --skip-powershell
-      displayName: Install NVIDIA Display Driver
+    #  displayName: Install NVIDIA Display Driver
 
     - script: |
         choco install cuda --version 11.0.3 -fdv -y --debug
