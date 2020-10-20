@@ -306,11 +306,6 @@ class LinuxExtractor(Extractor):
             cuda_libs = ["accinj64", "cuinj64"]
             self.runfile = f"cuda_{version}_{version_patch}_linux_ppc64le.run"
             self.embedded_blob = None
-        elif "arm" in self.machine or "aarch64" in self.machine:
-            # FIXME for ARM 64 Arch
-            cuda_libs = []
-            self.runfile = f"cuda_{version}_{version_patch}_linux_FIXME.run"
-            self.embedded_blob = None
         else:
             # x86-64 Arch
             cuda_libs = ["accinj64", "cuinj64"]
