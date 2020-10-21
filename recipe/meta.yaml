@@ -1,6 +1,8 @@
 # Originally forked from https://github.com/AnacondaRecipes/cudatoolkit-feedstock
 # Distributed under the BSD-2-Clause license
 # Copyright (c) 2017, Continuum Analytics, Inc. All rights reserved.
+#
+# Distribution of the content approved by NVIDIA ( http://nvbugs/3052604 )
 {% set major_minor = "10.2" %}
 
 # The following cudavars dictionary is a table of metadata for selecting various
@@ -54,7 +56,6 @@
 {% set version_patch = cudavars[major_minor]["version_patch"]["ppc64le"] %}  # [ppc64le]
 {% set version_patch = cudavars[major_minor]["version_patch"]["win"] %}  # [win]
 {% set download_dir = cudavars[major_minor]["download_dir"] %}
-
 
 package:
    name: cudatoolkit
