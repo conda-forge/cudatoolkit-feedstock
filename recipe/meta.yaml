@@ -10,12 +10,13 @@
 # version: the X.Y.Z version number for cudatoolkit.
 # version_patch: the patch/build number for the associated X.Y.Z number. This value
 #   is a dict of platform keys to patch numbers, because this value is platform dependent.
+# download_dir: The driectory in which a version's downloads exist. This does not
+#   follow a set pattern. The URL that is accessed for download is usually:
+#       https://developer.download.nvidia.com/compute/cuda/{{ download_dir }}
 # checksums: Another platform dependent key of the various download file checksums. For the
 #   runfiles, these are take from the official MD5 checksums. The official MD5 sums are
-#   usually available at this url for versions 11.0+:
-#       https://developer.download.nvidia.com/compute/cuda/{{ version }}/docs/sidebar/md5sum.txt
-#   However, for version 10.2, they are sometime available at the following instead:
-#       https://developer.download.nvidia.com/compute/cuda/{{ major_minor }}/docs/sidebar/md5sum.txt
+#   usually available at the following 11.0+:
+#       https://developer.download.nvidia.com/compute/cuda/{{ download_dir }}/docs/sidebar/md5sum.txt
 
 {% set cudavars = {
   "10.2": {
@@ -25,6 +26,7 @@
       "ppc64le": "440.33.01",
       "win": "441.22",
     },
+    "download_dir": major_minor,
     "checksums": {
       "linux64": "3d816c583759efa8567a92c1a2af90db",
       "ppc64le": "ecb6af432e64bc10e7a18cd6bd4be62f",
@@ -38,6 +40,7 @@
       "ppc64le": "450.51.06",
       "win": "451.82",
     },
+    "download_dir": "11.0.3",
     "checksums": {
       "linux64": "70af4cebe30549b9995fb9c57d538214",
       "ppc64le": "dabba7135b466d6726eade724d2eb598",
@@ -50,6 +53,7 @@
 {% set version_patch = cudavars[major_minor]["version_patch"]["linux64"] %}  # [linux64]
 {% set version_patch = cudavars[major_minor]["version_patch"]["ppc64le"] %}  # [ppc64le]
 {% set version_patch = cudavars[major_minor]["version_patch"]["win"] %}  # [win]
+{% set download_dir = cudavars[major_minor]["download_dir"] %}
 
 
 package:
@@ -59,11 +63,11 @@ package:
 
 source:
   - path: ./build.py
-  - url: https://developer.download.nvidia.com/compute/cuda/{{ version }}/local_installers/cuda_{{ version }}_{{ version_patch }}_linux.run  # [linux64]
+  - url: https://developer.download.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/cuda_{{ version }}_{{ version_patch }}_linux.run  # [linux64]
     md5: {{ cudavars[major_minor]["checksums"]["linux64"] }}  # [linux64]
-  - url: https://developer.download.nvidia.com/compute/cuda/{{ version }}/local_installers/cuda_{{ version }}_{{ version_patch }}_linux_ppc64le.run  # [ppc64le]
+  - url: https://developer.download.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/cuda_{{ version }}_{{ version_patch }}_linux_ppc64le.run  # [ppc64le]
     md5: {{ cudavars[major_minor]["checksums"]["ppc64le"] }}  # [ppc64le]
-  - url: https://developer.download.nvidia.com/compute/cuda/{{ version }}/local_installers/cuda_{{ version }}_{{ version_patch }}_win10.exe  # [win]
+  - url: https://developer.download.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/cuda_{{ version }}_{{ version_patch }}_win10.exe  # [win]
     md5: {{ cudavars[major_minor]["checksums"]["win"] }}  # [win]
 
 build:
