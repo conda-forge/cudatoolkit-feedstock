@@ -1,1 +1,3 @@
 conda_forge_output_validation: true
+choco:
+    - cuda --version=11.0.3
