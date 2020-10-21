@@ -66,6 +66,7 @@ class Extractor(object):
             self.major, self.minor, self.micro = version_parts[:3]
         else:
             raise ValueError(f"{version!r} not a valid version string")
+        self.major_minor = (int(self.major), int(self.minor))
 
         # set attrs
         self.cuda_libraries = [
@@ -94,7 +95,7 @@ class Extractor(object):
             "nvrtc",
             "nvrtc-builtins",
         ]
-        if int(self.major) >= 11:
+        if self.major_minor >= (11, 0):
             self.cuda_libraries.append("cusolverMg")
         self.cuda_static_libraries = ["cudadevrt"]
         self.libdevice_versions = [self.major]
@@ -360,7 +361,9 @@ class LinuxExtractor(Extractor):
                 # "--nox11" runfile command prevents desktop GUI on local install
                 cmd = [
                     os.path.join(self.src_dir, self.runfile),
-                    f"--installpath={tmpd}",
+                    f"--installpath={tmpd}"
+                    if self.major_minor >= (10, 2)
+                    else f"--extract={tmpd}",
                     "--toolkit",
                     "--silent",
                     "--override",
