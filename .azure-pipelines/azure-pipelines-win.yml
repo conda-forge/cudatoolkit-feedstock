@@ -17,6 +17,10 @@ jobs:
 
   steps:
     - script: |
+        choco install cuda --version=11.0.3 -fdv -y --debug
+      displayName: "Install Chocolatey Package: cuda --version=11.0.3"
+
+    - script: |
         choco install vcpython27 -fdv -y --debug
       condition: contains(variables['CONFIG'], 'vs2008')
       displayName: Install vcpython27.msi (if needed)
