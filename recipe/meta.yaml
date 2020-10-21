@@ -1,6 +1,9 @@
 # Originally forked from https://github.com/AnacondaRecipes/cudatoolkit-feedstock
 # Distributed under the BSD-2-Clause license
 # Copyright (c) 2017, Continuum Analytics, Inc. All rights reserved.
+#
+# Distribution of the content approved by NVIDIA ( http://nvbugs/3052604 )
+
 {% set version = "11.0.3" %}
 {% set version_patch = "450.51.06" %}  # [linux64]
 {% set version_patch = "450.51.06" %}  # [ppc64le]
