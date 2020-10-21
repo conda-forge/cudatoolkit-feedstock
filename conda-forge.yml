@@ -1,4 +1,4 @@
 conda_forge_output_validation: true
 provider: {linux_aarch64: false, linux_ppc64le: default}
 choco:
-    - cuda --version=10.2.89 --skip-powershell
+    - cuda --version=11.0.3
