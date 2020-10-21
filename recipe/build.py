@@ -295,7 +295,6 @@ class LinuxExtractor(Extractor):
 
     def __init__(self, plat, version, version_patch):
         super().__init__(plat, version, version_patch)
-        self.cuda_libraries.extend(["accinj64", "cuinj64"])
         self.symlinks = True
         # need globs to handle symlinks
         self.cuda_lib_fmt = "lib{0}.so*"
@@ -304,15 +303,19 @@ class LinuxExtractor(Extractor):
         self.nvtoolsext_fmt = "lib{0}.so*"
         self.nvtoolsextpath = None
         self.libdir = "lib"
+        self.machine = platform.machine()
 
-        if platform.machine() == "ppc64le":
+        if self.machine == "ppc64le":
             # Power 8 Arch
+            cuda_libs = ["accinj64", "cuinj64"]
             self.runfile = f"cuda_{version}_{version_patch}_linux_ppc64le.run"
             self.embedded_blob = None
         else:
             # x86-64 Arch
+            cuda_libs = ["accinj64", "cuinj64"]
             self.runfile = f"cuda_{version}_{version_patch}_linux.run"
             self.embedded_blob = None
+        self.cuda_libraries.extend(cuda_libs)
 
         self.post_init()
 
