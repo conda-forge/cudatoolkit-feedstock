@@ -17,8 +17,8 @@ jobs:
 
   steps:
     - script: |
-        choco install cuda --version=10.2.89 -fdv -y --debug
-      displayName: "Install Chocolatey Package: cuda --version=10.2.89"
+        choco install cuda --version=10.2.89 --skip-powershell -fdv -y --debug
+      displayName: "Install Chocolatey Package: cuda --version=10.2.89 --skip-powershell"
 
     - script: |
         choco install vcpython27 -fdv -y --debug
