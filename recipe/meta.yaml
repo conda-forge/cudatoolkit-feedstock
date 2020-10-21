@@ -26,7 +26,7 @@
       "ppc64le": "440.33.01",
       "win": "441.22",
     },
-    "download_dir": major_minor,
+    "download_dir": major_minor + "/Prod",
     "checksums": {
       "linux64": "3d816c583759efa8567a92c1a2af90db",
       "ppc64le": "ecb6af432e64bc10e7a18cd6bd4be62f",
