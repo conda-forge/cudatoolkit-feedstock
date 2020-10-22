@@ -20,21 +20,23 @@
 #   runfiles, these are take from the official MD5 checksums. The official MD5 sums are
 #   usually available at the following 11.0+:
 #       https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/docs/sidebar/md5sum.txt
+#   For 10.1.243, the URL is
+#       http://developer.download.nvidia.com/compute/cuda/10.1/Prod/docs3/sidebar/md5sum.txt
 
 {% set cudavars = {
   "10.1": {
-    "version": "10.1.105",
+    "version": "10.1.243",
     "version_patch": {
-      "linux64": "418.39",
-      "ppc64le": "418.39",
-      "win": "418.96",
+      "linux64": "418.87.00",
+      "ppc64le": "418.87.00",
+      "win": "426.00",
     },
     "subdomain": "developer",
     "download_dir": major_minor + "/Prod",
     "checksums": {
-      "linux64": "4be516e493ef9588f455df0722e2e686",
-      "ppc64le": "b77700d03f205773487b12721e9a5e45",
-      "win": "25a060d492acbed7c549f65204e14e76",
+      "linux64": "a71f703ed688eeca637dc27df714e854",
+      "ppc64le": "abb32a3754c84d2934ef04a76a9bc978",
+      "win": "b54cf32683f93e787321dcc2e692ff69",
     },
   },
   "10.2": {
