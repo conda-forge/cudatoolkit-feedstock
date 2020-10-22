@@ -373,9 +373,9 @@ class LinuxExtractor(Extractor):
                 else:
                     # <=10.1
                     cmd.append(f"--toolkitpath={tmpd}")
-                    if self.machine != "ppc64le":
+                    #if self.machine != "ppc64le":
                         # librarypath is where cublas lives
-                        cmd.append(f"--librarypath={tmpd}")
+                    cmd.append(f"--librarypath={tmpd}")
                 # run the extract command
                 print(f"Extract command: {' '.join(cmd)}")
                 try:
