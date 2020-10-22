@@ -76,7 +76,6 @@ class Extractor(object):
             "cufftw",
             "curand",
             "cusolver",
-            "cusolverMg",
             "cusparse",
             "nppc",
             "nppial",
@@ -95,6 +94,8 @@ class Extractor(object):
             "nvrtc",
             "nvrtc-builtins",
         ]
+        if int(self.major) >= 11:
+            self.cuda_libraries.append("cusolverMg")
         self.cuda_static_libraries = ["cudadevrt"]
         self.libdevice_versions = [self.major]
         self.libdevice_lib_fmt = "libdevice.10.bc"
