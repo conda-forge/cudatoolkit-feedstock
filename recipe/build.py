@@ -390,10 +390,13 @@ class LinuxExtractor(Extractor):
                     cmd.append(f"--installpath={tmpd}")
                 else:
                     # <=10.1
-                    cmd.extend([f"--toolkitpath={tmpd}", f"--librarypath={tmpd}"])
+                    cmd.extend([f"--toolkitpath={tmpd}",
+                        f"--librarypath={tmpd}"
+                    ])
                     if self.machine == "ppc64le":
                         # cublas headers are not available, though the runfile
                         # thinks that they are.
+                        cmd = cmd[:-1]
                         check = False
                 self.run_extract(cmd, check=check)
             for p in self.patches:
