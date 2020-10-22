@@ -391,7 +391,7 @@ class LinuxExtractor(Extractor):
                 else:
                     # <=10.1
                     cmd.extend([f"--toolkitpath={tmpd}", f"--librarypath={tmpd}"])
-                    if self.machine != "ppc64le":
+                    if self.machine == "ppc64le":
                         # cublas headers are not available, though the runfile
                         # thinks that they are.
                         check = False
