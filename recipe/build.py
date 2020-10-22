@@ -365,10 +365,11 @@ class LinuxExtractor(Extractor):
                     "--silent",
                     "--override",
                     "--nox11",
+                    "--toolkit",
                 ]
                 # add toolkit install args
                 if self.major_minor >= (10, 2):
-                    cmd.extend([f"--installpath={tmpd}", "--toolkit"])
+                    cmd.append(f"--installpath={tmpd}")
                 else:
                     # <=10.1
                     cmd.append(f"--toolkitpath={tmpd}")
