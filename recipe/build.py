@@ -372,7 +372,7 @@ class LinuxExtractor(Extractor):
                     cmd.append(f"--installpath={tmpd}")
                 else:
                     # <=10.1
-                    cmd.append(f"--toolkitpath={tmpd}")
+                    cmd.extend([f"--toolkitpath={tmpd}", f"--librarypath={tmpd}"])
                 print(f"Extract command: {' '.join(cmd)}")
                 check_call(cmd)
             for p in self.patches:
