@@ -411,7 +411,11 @@ class LinuxExtractor(Extractor):
                     "--silent",
                 ]
                 check_call(cmd)
-            self.copy(tmpd)
+            try:
+                self.copy(tmpd)
+            except Exception:
+                call(["ls", "-lR", str(tmpd)])
+                raise
 
 
 def getplatform():
