@@ -380,7 +380,7 @@ class LinuxExtractor(Extractor):
                 print(f"Extract command: {' '.join(cmd)}")
                 try:
                     check_call(cmd)
-                except as e:
+                except CalledProcessError as e:
                     with open("/tmp/cuda-installer.log") as f:
                         log = f.read()
                     print(f"CUDA-INSTALLER LOG (/tmp/cuda-installer.log):\n\n{log}")
