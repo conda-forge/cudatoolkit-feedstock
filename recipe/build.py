@@ -15,7 +15,7 @@ import fnmatch
 import platform
 import itertools
 from pathlib import Path
-from subprocess import check_call, CalledProcessError
+from subprocess import call, check_call, CalledProcessError
 from argparse import ArgumentParser
 from tempfile import TemporaryDirectory as tempdir
 
@@ -330,6 +330,23 @@ class LinuxExtractor(Extractor):
             libdevice_lib_dir=os.path.join(basepath, "nvvm", "libdevice"),
         )
 
+    @staticmethod
+    def run_extract(cmd, check=True):
+        """Run the extract command"""
+        print(f"Extract command: {' '.join(cmd)}")
+        caller = check_call if check else call
+        try:
+            caller(cmd)
+        except CalledProcessError as e:
+            logfile = "/tmp/cuda-installer.log"
+            if os.path.isfile(logfile):
+                with open(logfile) as f:
+                    log = f.read()
+                print(f"CUDA-INSTALLER LOG (/tmp/cuda-installer.log):\n\n{log}")
+            else:
+                print("No log file found")
+            raise
+
     def extract(self):
         os.chmod(self.runfile, 0o777)
         with tempdir() as tmpd:
@@ -367,24 +384,18 @@ class LinuxExtractor(Extractor):
                     "--nox11",
                     "--toolkit",
                 ]
+                check = True
                 # add toolkit install args
                 if self.major_minor >= (10, 2):
                     cmd.append(f"--installpath={tmpd}")
                 else:
                     # <=10.1
-                    cmd.append(f"--toolkitpath={tmpd}")
-                    #if self.machine != "ppc64le":
-                        # librarypath is where cublas lives
-                    cmd.append(f"--librarypath={tmpd}")
-                # run the extract command
-                print(f"Extract command: {' '.join(cmd)}")
-                try:
-                    check_call(cmd)
-                except CalledProcessError as e:
-                    with open("/tmp/cuda-installer.log") as f:
-                        log = f.read()
-                    print(f"CUDA-INSTALLER LOG (/tmp/cuda-installer.log):\n\n{log}")
-                    raise
+                    cmd.extend([f"--toolkitpath={tmpd}", f"--librarypath={tmpd}"])
+                    if self.machine != "ppc64le":
+                        # cublas headers are not available, though the runfile
+                        # thinks that they are.
+                        check = False
+                self.run_extract(cmd, check=check)
             for p in self.patches:
                 os.chmod(p, 0o777)
                 cmd = [
