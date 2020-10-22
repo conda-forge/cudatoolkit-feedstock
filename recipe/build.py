@@ -15,7 +15,7 @@ import fnmatch
 import platform
 import itertools
 from pathlib import Path
-from subprocess import check_call
+from subprocess import check_call, CalledProcessError
 from argparse import ArgumentParser
 from tempfile import TemporaryDirectory as tempdir
 
@@ -376,8 +376,15 @@ class LinuxExtractor(Extractor):
                     if self.machine != "ppc64le":
                         # librarypath is where cublas lives
                         cmd.append(f"--librarypath={tmpd}")
+                # run the extract command
                 print(f"Extract command: {' '.join(cmd)}")
-                check_call(cmd)
+                try:
+                    check_call(cmd)
+                except as e:
+                    with open("/tmp/cuda-installer.log") as f:
+                        log = f.read()
+                    print(f"CUDA-INSTALLER LOG (/tmp/cuda-installer.log):\n\n{log}")
+                    raise
             for p in self.patches:
                 os.chmod(p, 0o777)
                 cmd = [
