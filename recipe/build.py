@@ -372,7 +372,10 @@ class LinuxExtractor(Extractor):
                     cmd.append(f"--installpath={tmpd}")
                 else:
                     # <=10.1
-                    cmd.extend([f"--toolkitpath={tmpd}", f"--librarypath={tmpd}"])
+                    cmd.append(f"--toolkitpath={tmpd}")
+                    if self.machine != "ppc64le":
+                        # librarypath is where cublas lives
+                        cmd.append(f"--librarypath={tmpd}")
                 print(f"Extract command: {' '.join(cmd)}")
                 check_call(cmd)
             for p in self.patches:
