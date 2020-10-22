@@ -306,6 +306,7 @@ class LinuxExtractor(Extractor):
         self.nvtoolsext_fmt = "lib{0}.so*"
         self.nvtoolsextpath = None
         self.libdir = "lib"
+        self.cuda_lib_reldir = "lib64"
         self.machine = platform.machine()
 
         if self.machine == "ppc64le":
@@ -313,6 +314,8 @@ class LinuxExtractor(Extractor):
             cuda_libs = ["accinj64", "cuinj64"]
             self.runfile = f"cuda_{version}_{version_patch}_linux_ppc64le.run"
             self.embedded_blob = None
+            if self.major_minor <= (10, 1):
+                self.cuda_lib_reldir = "targets/ppc64le-linux/lib"
         else:
             # x86-64 Arch
             cuda_libs = ["accinj64", "cuinj64"]
@@ -322,10 +325,9 @@ class LinuxExtractor(Extractor):
 
         self.post_init()
 
-    def copy(self, *args):
-        basepath = args[0]
+    def copy(self, basepath):
         self.copy_files(
-            cuda_lib_dir=os.path.join(basepath, "lib64"),
+            cuda_lib_dir=os.path.join(basepath, self.cuda_lib_reldir),
             nvvm_lib_dir=os.path.join(basepath, "nvvm", "lib64"),
             libdevice_lib_dir=os.path.join(basepath, "nvvm", "libdevice"),
         )
@@ -390,13 +392,13 @@ class LinuxExtractor(Extractor):
                     cmd.append(f"--installpath={tmpd}")
                 else:
                     # <=10.1
-                    cmd.extend([f"--toolkitpath={tmpd}",
-                        f"--librarypath={tmpd}"
+                    cmd.extend([
+                        f"--toolkitpath={tmpd}",
+                        f"--librarypath={tmpd}",
                     ])
                     if self.machine == "ppc64le":
                         # cublas headers are not available, though the runfile
                         # thinks that they are.
-                        cmd = cmd[:-1]
                         check = False
                 self.run_extract(cmd, check=check)
             for p in self.patches:
