@@ -91,10 +91,11 @@ class Extractor(object):
             "npps",
             "nvToolsExt",
             "nvblas",
-            "nvjpeg",
             "nvrtc",
             "nvrtc-builtins",
         ]
+        if self.major_minor >= (10, 2):
+            self.cuda_libraries.append("nvjpeg")
         if self.major_minor >= (11, 0):
             self.cuda_libraries.append("cusolverMg")
         self.cuda_static_libraries = ["cudadevrt"]
