@@ -15,7 +15,7 @@ import fnmatch
 import platform
 import itertools
 from pathlib import Path
-from subprocess import check_call
+from subprocess import call, check_call, CalledProcessError
 from argparse import ArgumentParser
 from tempfile import TemporaryDirectory as tempdir
 
@@ -66,6 +66,7 @@ class Extractor(object):
             self.major, self.minor, self.micro = version_parts[:3]
         else:
             raise ValueError(f"{version!r} not a valid version string")
+        self.major_minor = (int(self.major), int(self.minor))
 
         # set attrs
         self.cuda_libraries = [
@@ -76,7 +77,6 @@ class Extractor(object):
             "cufftw",
             "curand",
             "cusolver",
-            "cusolverMg",
             "cusparse",
             "nppc",
             "nppial",
@@ -91,10 +91,13 @@ class Extractor(object):
             "npps",
             "nvToolsExt",
             "nvblas",
-            "nvjpeg",
             "nvrtc",
             "nvrtc-builtins",
         ]
+        if self.major_minor >= (10, 2):
+            self.cuda_libraries.append("nvjpeg")
+        if self.major_minor >= (11, 0):
+            self.cuda_libraries.append("cusolverMg")
         self.cuda_static_libraries = ["cudadevrt"]
         self.libdevice_versions = [self.major]
         self.libdevice_lib_fmt = "libdevice.10.bc"
@@ -303,6 +306,7 @@ class LinuxExtractor(Extractor):
         self.nvtoolsext_fmt = "lib{0}.so*"
         self.nvtoolsextpath = None
         self.libdir = "lib"
+        self.cuda_lib_reldir = "lib64"
         self.machine = platform.machine()
 
         if self.machine == "ppc64le":
@@ -310,6 +314,8 @@ class LinuxExtractor(Extractor):
             cuda_libs = ["accinj64", "cuinj64"]
             self.runfile = f"cuda_{version}_{version_patch}_linux_ppc64le.run"
             self.embedded_blob = None
+            if self.major_minor <= (10, 1):
+                self.cuda_lib_reldir = "targets/ppc64le-linux/lib"
         else:
             # x86-64 Arch
             cuda_libs = ["accinj64", "cuinj64"]
@@ -319,13 +325,29 @@ class LinuxExtractor(Extractor):
 
         self.post_init()
 
-    def copy(self, *args):
-        basepath = args[0]
+    def copy(self, basepath):
         self.copy_files(
-            cuda_lib_dir=os.path.join(basepath, "lib64"),
+            cuda_lib_dir=os.path.join(basepath, self.cuda_lib_reldir),
             nvvm_lib_dir=os.path.join(basepath, "nvvm", "lib64"),
             libdevice_lib_dir=os.path.join(basepath, "nvvm", "libdevice"),
         )
+
+    @staticmethod
+    def run_extract(cmd, check=True):
+        """Run the extract command"""
+        print(f"Extract command: {' '.join(cmd)}")
+        caller = check_call if check else call
+        try:
+            caller(cmd)
+        except CalledProcessError as e:
+            logfile = "/tmp/cuda-installer.log"
+            if os.path.isfile(logfile):
+                with open(logfile) as f:
+                    log = f.read()
+                print(f"CUDA-INSTALLER LOG (/tmp/cuda-installer.log):\n\n{log}")
+            else:
+                print("No log file found")
+            raise
 
     def extract(self):
         os.chmod(self.runfile, 0o777)
@@ -359,14 +381,26 @@ class LinuxExtractor(Extractor):
                 # "--nox11" runfile command prevents desktop GUI on local install
                 cmd = [
                     os.path.join(self.src_dir, self.runfile),
-                    f"--installpath={tmpd}",
-                    "--toolkit",
                     "--silent",
                     "--override",
                     "--nox11",
+                    "--toolkit",
                 ]
-                print(f"Extract command: {' '.join(cmd)}")
-                check_call(cmd)
+                check = True
+                # add toolkit install args
+                if self.major_minor >= (10, 2):
+                    cmd.append(f"--installpath={tmpd}")
+                else:
+                    # <=10.1
+                    cmd.extend([
+                        f"--toolkitpath={tmpd}",
+                        f"--librarypath={tmpd}",
+                    ])
+                    if self.machine == "ppc64le":
+                        # cublas headers are not available, though the runfile
+                        # thinks that they are.
+                        check = False
+                self.run_extract(cmd, check=check)
             for p in self.patches:
                 os.chmod(p, 0o777)
                 cmd = [
