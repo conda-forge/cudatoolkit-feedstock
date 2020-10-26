@@ -45,7 +45,6 @@
     "version_patch": {
       "linux64": "418.87.00",
       "osx": "skip",
-      # actual value is "ppc64le": "418.87.00", but doesn't build
       "ppc64le": "skip",
       "win": "426.00",
     },
