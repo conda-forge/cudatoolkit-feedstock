@@ -23,6 +23,8 @@
 #       https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/docs/sidebar/md5sum.txt
 #   For 10.1.243, the URL is:
 #       http://developer.download.nvidia.com/compute/cuda/10.1/Prod/docs3/sidebar/md5sum.txt
+#   For 10.0.130, the URL differs by the subdir:
+#       https://developer.download.nvidia.com/compute/cuda/10.0/Prod/docs/sidebar/md5sum.txt
 
 {% set cudavars = {
   "10.0": {
@@ -33,7 +35,7 @@
       "ppc64le": "skip",
       "win": "411.31",
     },
-    "subdomain": "developer.download",
+    "subdomain": "developer",
     "download_dir": major_minor + "/Prod",
     "checksums": {
       "linux64": "9375304c8dc8d42e7f9a9ae37e80b42b",
