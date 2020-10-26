@@ -74,7 +74,6 @@ class Extractor(object):
         # set attrs
         self.cuda_libraries = [
             "cublas",
-            "cublasLt",
             "cudart",
             "cufft",
             "cufftw",
@@ -97,6 +96,8 @@ class Extractor(object):
             "nvrtc",
             "nvrtc-builtins",
         ]
+        if self.major_minor >= (10, 1):
+            self.cuda_libraries.append("cublasLt")
         if self.major_minor >= (10, 2):
             self.cuda_libraries.append("nvjpeg")
         if self.major_minor >= (11, 0):
@@ -393,8 +394,8 @@ class LinuxExtractor(Extractor):
                 # add toolkit install args
                 if self.major_minor >= (10, 2):
                     cmd.append(f"--installpath={tmpd}")
-                else:
-                    # <=10.1
+                elif self.major_minor == (10, 1):
+                    # v10.1
                     cmd.extend([
                         f"--toolkitpath={tmpd}",
                         f"--librarypath={tmpd}",
@@ -403,6 +404,9 @@ class LinuxExtractor(Extractor):
                         # cublas headers are not available, though the runfile
                         # thinks that they are.
                         check = False
+                else:
+                    # <=10.0
+                    cmd.append(f"--toolkitpath={tmpd}")
                 self.run_extract(cmd, check=check)
             for p in self.patches:
                 os.chmod(p, 0o777)
