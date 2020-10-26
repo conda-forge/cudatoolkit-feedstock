@@ -41,6 +41,10 @@
       "linux64": "9375304c8dc8d42e7f9a9ae37e80b42b",
       "win": "90fafdfe2167ac25432db95391ca954e",
     },
+    "blob_ext": {
+      "linux64": "",
+      "win": ".exe",
+    },
   },
   "10.1": {
     "version": "10.1.243",
@@ -56,6 +60,11 @@
       "linux64": "a71f703ed688eeca637dc27df714e854",
       "ppc64le": "abb32a3754c84d2934ef04a76a9bc978",
       "win": "b54cf32683f93e787321dcc2e692ff69",
+    },
+    "blob_ext": {
+      "linux64": ".run",
+      "ppc64le": ".run",
+      "win": ".exe",
     },
   },
   "10.2": {
@@ -73,6 +82,11 @@
       "ppc64le": "ecb6af432e64bc10e7a18cd6bd4be62f",
       "win": "d9f5b9f24c3d3fc456a3c789f9b43419",
     },
+    "blob_ext": {
+      "linux64": ".run",
+      "ppc64le": ".run",
+      "win": ".exe",
+    },
   },
   "11.0": {
     "version": "11.0.3",
@@ -89,6 +103,11 @@
       "ppc64le": "dabba7135b466d6726eade724d2eb598",
       "win": "80ae0fdbe04759123f3cab81f2aadabd",
     },
+    "blob_ext": {
+      "linux64": ".run",
+      "ppc64le": ".run",
+      "win": ".exe",
+    },
   },
 }
 %}
@@ -99,6 +118,11 @@
 {% set version_patch = cudavars[major_minor]["version_patch"]["win"] %}  # [win]
 {% set subdomain = cudavars[major_minor]["subdomain"] %}
 {% set download_dir = cudavars[major_minor]["download_dir"] %}
+{% set blob_ext = cudavars[major_minor]["blob_ext"]["linux64"] %}  # [linux64]
+{% set blob_ext = cudavars[major_minor]["blob_ext"]["osx"] %}  # [osx]
+{% set blob_ext = cudavars[major_minor]["blob_ext"]["ppc64le"] %}  # [ppc64le]
+{% set blob_ext = cudavars[major_minor]["blob_ext"]["win"] %}  # [win]
+
 
 package:
    name: cudatoolkit
@@ -107,11 +131,11 @@ package:
 
 source:
   - path: ./build.py
-  - url: https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/cuda_{{ version }}_{{ version_patch }}_linux.run  # [linux64]
+  - url: https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/cuda_{{ version }}_{{ version_patch }}_linux{{ blob_ext }}  # [linux64]
     md5: {{ cudavars[major_minor]["checksums"]["linux64"] }}  # [linux64]
-  - url: https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/cuda_{{ version }}_{{ version_patch }}_linux_ppc64le.run  # [ppc64le]
+  - url: https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/cuda_{{ version }}_{{ version_patch }}_linux_ppc64le{{ blob_ext }}  # [ppc64le]
     md5: {{ cudavars[major_minor]["checksums"]["ppc64le"] }}  # [ppc64le]
-  - url: https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/cuda_{{ version }}_{{ version_patch }}_win10.exe  # [win]
+  - url: https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/cuda_{{ version }}_{{ version_patch }}_win10{{ blob_ext }}  # [win]
     md5: {{ cudavars[major_minor]["checksums"]["win"] }}  # [win]
 
 build:
@@ -131,7 +155,7 @@ build:
 {% endif %}
   rpaths_patcher: LIEF  # [ppc64le]
   script: |
-    python build.py --version {{ version }} --version-patch {{ version_patch }}
+    python build.py --version {{ version }} --version-patch {{ version_patch }} --blob-ext {{ blob_ext }}
     if errorlevel 1 exit 1                                                 # [win]
 
     :: copy nvvm and libdevice into the DLLs folder so numba can use them  # [win]
