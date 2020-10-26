@@ -3,7 +3,7 @@
 # Copyright (c) 2017, Continuum Analytics, Inc. All rights reserved.
 #
 # Distribution of the content approved by NVIDIA ( http://nvbugs/3052604 )
-{% set major_minor = "10.1" %}
+{% set major_minor = "10.0" %}
 
 # The following cudavars dictionary is a table of metadata for selecting various
 # paramaters based on the X.Y version number of cudatoolkit. The following is a description
@@ -12,6 +12,7 @@
 # version: the X.Y.Z version number for cudatoolkit.
 # version_patch: the patch/build number for the associated X.Y.Z number. This value
 #   is a dict of platform keys to patch numbers, because this value is platform dependent.
+#   If the value of the version_patch is "skip", that platform will be skipped.
 # subdomain: The nvidia.com subdomain where that files may be downloaded.
 # download_dir: The directory in which a version's downloads exist. This does not
 #   follow a set pattern. The URL that is accessed for download is usually:
@@ -24,11 +25,28 @@
 #       http://developer.download.nvidia.com/compute/cuda/10.1/Prod/docs3/sidebar/md5sum.txt
 
 {% set cudavars = {
+  "10.0": {
+    "version": "10.0.130",
+    "version_patch": {
+      "linux64": "410.48",
+      "osx": "skip",
+      "ppc64le": "skip",
+      "win": "411.31",
+    },
+    "subdomain": "developer.download",
+    "download_dir": major_minor + "/Prod",
+    "checksums": {
+      "linux64": "9375304c8dc8d42e7f9a9ae37e80b42b",
+      "win": "90fafdfe2167ac25432db95391ca954e",
+    },
+  },
   "10.1": {
     "version": "10.1.243",
     "version_patch": {
       "linux64": "418.87.00",
-      "ppc64le": "418.87.00",
+      "osx": "skip",
+      # actual value is "ppc64le": "418.87.00", but doesn't build
+      "ppc64le": "skip",
       "win": "426.00",
     },
     "subdomain": "developer.download",
@@ -43,6 +61,7 @@
     "version": "10.2.89",
     "version_patch": {
       "linux64": "440.33.01",
+      "osx": "skip",
       "ppc64le": "440.33.01",
       "win": "441.22",
     },
@@ -58,6 +77,7 @@
     "version": "11.0.3",
     "version_patch": {
       "linux64": "450.51.06",
+      "osx": "skip",
       "ppc64le": "450.51.06",
       "win": "451.82",
     },
@@ -73,6 +93,7 @@
 %}
 {% set version = cudavars[major_minor]["version"] %}
 {% set version_patch = cudavars[major_minor]["version_patch"]["linux64"] %}  # [linux64]
+{% set version_patch = cudavars[major_minor]["version_patch"]["osx"] %}  # [osx]
 {% set version_patch = cudavars[major_minor]["version_patch"]["ppc64le"] %}  # [ppc64le]
 {% set version_patch = cudavars[major_minor]["version_patch"]["win"] %}  # [win]
 {% set subdomain = cudavars[major_minor]["subdomain"] %}
@@ -104,9 +125,8 @@ build:
     - "$RPATH/librt.so.1"
     - "$RPATH/ld-linux-x86-64.so.2"
     - "$RPATH/libm.so.6"
-  skip: true  # [osx]
-{% if major_minor == "10.1" %}
-  skip: true  # [ppc64le]
+{% if version_patch == "skip" %}
+  skip: true
 {% endif %}
   rpaths_patcher: LIEF  # [ppc64le]
   script: |
