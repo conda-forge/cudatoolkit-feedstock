@@ -155,7 +155,7 @@ build:
 {% endif %}
   rpaths_patcher: LIEF  # [ppc64le]
   script: |
-    python build.py --version {{ version }} --version-patch {{ version_patch }} --blob-ext {{ blob_ext }}
+    python build.py --version {{ version }} --version-patch {{ version_patch }} --blob-ext={{ blob_ext }}
     if errorlevel 1 exit 1                                                 # [win]
 
     :: copy nvvm and libdevice into the DLLs folder so numba can use them  # [win]
