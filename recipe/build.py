@@ -59,6 +59,8 @@ class Extractor(object):
             String format for the nvvm libraries
         libdevice_lib_fmt : str
             string format for the libdevice.compute bitcode file
+        version_patch_underscore : str
+            An "_" stting if version_patch is non-empty. An empty string otherwise.
         """
         self.version = version
         version_parts = version.split(".")
@@ -70,6 +72,7 @@ class Extractor(object):
             raise ValueError(f"{version!r} not a valid version string")
         self.major_minor = (int(self.major), int(self.minor))
         self.blob_ext = blob_ext
+        self.version_patch_underscore = "_" if version_patch else ""
 
         # set attrs
         self.cuda_libraries = [
@@ -200,7 +203,7 @@ class WindowsExtractor(Extractor):
     def __init__(self, plat, version, version_patch, blob_ext):
         super().__init__(plat, version, version_patch, blob_ext)
         self.cuda_libraries.append("cuinj")
-        self.runfile = f"cuda_{version}_{version_patch}_win10{blob_ext}"
+        self.runfile = f"cuda_{version}{self.version_patch_underscore}{version_patch}_win10{blob_ext}"
         self.embedded_blob = None
         self.symlinks = False
         self.cuda_lib_fmt = "{0}64_1*.dll"
@@ -316,14 +319,14 @@ class LinuxExtractor(Extractor):
         if self.machine == "ppc64le":
             # Power 8 Arch
             cuda_libs = ["accinj64", "cuinj64"]
-            self.runfile = f"cuda_{version}_{version_patch}_linux_ppc64le{blob_ext}"
+            self.runfile = f"cuda_{version}{self.version_patch_underscore}{version_patch}_linux_ppc64le{blob_ext}"
             self.embedded_blob = None
             if self.major_minor <= (10, 1):
                 self.cuda_lib_reldir = "targets/ppc64le-linux/lib"
         else:
             # x86-64 Arch
             cuda_libs = ["accinj64", "cuinj64"]
-            self.runfile = f"cuda_{version}_{version_patch}_linux{blob_ext}"
+            self.runfile = f"cuda_{version}{self.version_patch_underscore}{version_patch}_linux{blob_ext}"
             self.embedded_blob = None
         self.cuda_libraries.extend(cuda_libs)
 
