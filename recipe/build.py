@@ -198,7 +198,7 @@ class WindowsExtractor(Extractor):
     """The windows extractor"""
 
     def __init__(self, plat, version, version_patch, blob_ext):
-        super().__init__(plat, version, version_patch)
+        super().__init__(plat, version, version_patch, blob_ext)
         self.cuda_libraries.append("cuinj")
         self.runfile = f"cuda_{version}_{version_patch}_win10{blob_ext}"
         self.embedded_blob = None
