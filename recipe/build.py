@@ -205,11 +205,16 @@ class WindowsExtractor(Extractor):
         self.cuda_libraries.append("cuinj")
         self.embedded_blob = None
         self.symlinks = False
-        self.cuda_lib_fmt = "{0}64_1*.dll"
+        if self.major_minor == (9, 2):
+            self.cuda_lib_fmt = "{0}64_92.dll"
+            self.nvvm_lib_fmt = "{0}64_32_0.dll"
+            self.libdevice_lib_fmt = "libdevice.{0}.bc"
+        else:
+            self.cuda_lib_fmt = "{0}64_1*.dll"
+            self.nvvm_lib_fmt = "{0}64_33_0.dll"
+            self.libdevice_lib_fmt = "libdevice.10.bc"
         self.cuda_static_lib_fmt = "{0}.lib"
-        self.nvvm_lib_fmt = "{0}64_33_0.dll"
         self.nvtoolsext_fmt = "{0}64_1.dll"
-        self.libdevice_lib_fmt = "libdevice.10.bc"
         pfs = ["Program Files", "Program Files (x86)"]
         nvidias = ["NVIDIA Corporation", "NVIDIA GPU Computing Toolkit"]
         nvtxs = ["NVToolsExt", "NvToolsExt", "nvToolsExt"]
