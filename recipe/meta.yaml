@@ -3,7 +3,7 @@
 # Copyright (c) 2017, Continuum Analytics, Inc. All rights reserved.
 #
 # Distribution of the content approved by NVIDIA ( http://nvbugs/3052604 )
-{% set major_minor = "10.1" %}
+{% set major_minor = "9.2" %}
 
 # The following cudavars dictionary is a table of metadata for selecting various
 # paramaters based on the X.Y version number of cudatoolkit. The following is a description
@@ -12,6 +12,7 @@
 # version: the X.Y.Z version number for cudatoolkit.
 # version_patch: the patch/build number for the associated X.Y.Z number. This value
 #   is a dict of platform keys to patch numbers, because this value is platform dependent.
+#   If the value of the version_patch is "skip", that platform will be skipped.
 # subdomain: The nvidia.com subdomain where that files may be downloaded.
 # download_dir: The directory in which a version's downloads exist. This does not
 #   follow a set pattern. The URL that is accessed for download is usually:
@@ -22,13 +23,56 @@
 #       https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/docs/sidebar/md5sum.txt
 #   For 10.1.243, the URL is:
 #       http://developer.download.nvidia.com/compute/cuda/10.1/Prod/docs3/sidebar/md5sum.txt
+#   For 10.0.130, the URL differs by the subdir:
+#       https://developer.download.nvidia.com/compute/cuda/10.0/Prod/docs/sidebar/md5sum.txt
+#   For 9.2.148, the URL is:
+#       http://developer.download.nvidia.com/compute/cuda/9.2/Prod2/docs/sidebar/md5sum.txt
 
 {% set cudavars = {
+  "9.2": {
+    "version": "9.2.148",
+    "version_patch": {
+      "linux64": "396.37",
+      "osx": "skip",
+      "ppc64le": "skip",
+      "win": "",
+    },
+    "subdomain": "developer",
+    "download_dir": major_minor + "/Prod2",
+    "checksums": {
+      "linux64": "8303cdf46904e6dea8d5d641b0b46f0d",
+      "win": "efaf92a93bdef21da29aba8a8768a16d",
+    },
+    "blob_ext": {
+      "linux64": "",
+      "win": "",
+    },
+  },
+  "10.0": {
+    "version": "10.0.130",
+    "version_patch": {
+      "linux64": "410.48",
+      "osx": "skip",
+      "ppc64le": "skip",
+      "win": "411.31",
+    },
+    "subdomain": "developer",
+    "download_dir": major_minor + "/Prod",
+    "checksums": {
+      "linux64": "9375304c8dc8d42e7f9a9ae37e80b42b",
+      "win": "90fafdfe2167ac25432db95391ca954e",
+    },
+    "blob_ext": {
+      "linux64": "",
+      "win": "",
+    },
+  },
   "10.1": {
     "version": "10.1.243",
     "version_patch": {
       "linux64": "418.87.00",
-      "ppc64le": "418.87.00",
+      "osx": "skip",
+      "ppc64le": "skip",
       "win": "426.00",
     },
     "subdomain": "developer.download",
@@ -38,11 +82,17 @@
       "ppc64le": "abb32a3754c84d2934ef04a76a9bc978",
       "win": "b54cf32683f93e787321dcc2e692ff69",
     },
+    "blob_ext": {
+      "linux64": ".run",
+      "ppc64le": ".run",
+      "win": ".exe",
+    },
   },
   "10.2": {
     "version": "10.2.89",
     "version_patch": {
       "linux64": "440.33.01",
+      "osx": "skip",
       "ppc64le": "440.33.01",
       "win": "441.22",
     },
@@ -53,11 +103,17 @@
       "ppc64le": "ecb6af432e64bc10e7a18cd6bd4be62f",
       "win": "d9f5b9f24c3d3fc456a3c789f9b43419",
     },
+    "blob_ext": {
+      "linux64": ".run",
+      "ppc64le": ".run",
+      "win": ".exe",
+    },
   },
   "11.0": {
     "version": "11.0.3",
     "version_patch": {
       "linux64": "450.51.06",
+      "osx": "skip",
       "ppc64le": "450.51.06",
       "win": "451.82",
     },
@@ -68,15 +124,34 @@
       "ppc64le": "dabba7135b466d6726eade724d2eb598",
       "win": "80ae0fdbe04759123f3cab81f2aadabd",
     },
+    "blob_ext": {
+      "linux64": ".run",
+      "ppc64le": ".run",
+      "win": ".exe",
+    },
   },
 }
 %}
 {% set version = cudavars[major_minor]["version"] %}
 {% set version_patch = cudavars[major_minor]["version_patch"]["linux64"] %}  # [linux64]
+{% set version_patch = cudavars[major_minor]["version_patch"]["osx"] %}  # [osx]
 {% set version_patch = cudavars[major_minor]["version_patch"]["ppc64le"] %}  # [ppc64le]
 {% set version_patch = cudavars[major_minor]["version_patch"]["win"] %}  # [win]
 {% set subdomain = cudavars[major_minor]["subdomain"] %}
 {% set download_dir = cudavars[major_minor]["download_dir"] %}
+
+# Set runfile
+{% if version_patch == "" %}
+    {% set version_patch_underscore = "" %}
+{% else %}
+    {% set version_patch_underscore = "_" %}
+{% endif %}
+{% set runfile_pre = "cuda_" + version + version_patch_underscore + version_patch %}
+{% set runfile = runfile_pre + "_linux" + cudavars[major_minor]["blob_ext"].get("linux64", "NONE") %}  # [linux64]
+{% set runfile = runfile_pre + "_mac" + cudavars[major_minor]["blob_ext"].get("osx", "NONE") %}  # [osx]
+{% set runfile = runfile_pre + "_linux_ppc64le" + cudavars[major_minor]["blob_ext"].get("ppc64le", "NONE") %}  # [ppc64le]
+{% set runfile = runfile_pre + "_win10" + cudavars[major_minor]["blob_ext"].get("win", "NONE") %}  # [win]
+
 
 package:
    name: cudatoolkit
@@ -85,11 +160,11 @@ package:
 
 source:
   - path: ./build.py
-  - url: https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/cuda_{{ version }}_{{ version_patch }}_linux.run  # [linux64]
+  - fn: {{ runfile }}
+    url: https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/{{ runfile }}
     md5: {{ cudavars[major_minor]["checksums"]["linux64"] }}  # [linux64]
-  - url: https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/cuda_{{ version }}_{{ version_patch }}_linux_ppc64le.run  # [ppc64le]
+    md5: {{ cudavars[major_minor]["checksums"]["osx"] }}  # [osx]
     md5: {{ cudavars[major_minor]["checksums"]["ppc64le"] }}  # [ppc64le]
-  - url: https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/cuda_{{ version }}_{{ version_patch }}_win10.exe  # [win]
     md5: {{ cudavars[major_minor]["checksums"]["win"] }}  # [win]
 
 build:
@@ -104,13 +179,12 @@ build:
     - "$RPATH/librt.so.1"
     - "$RPATH/ld-linux-x86-64.so.2"
     - "$RPATH/libm.so.6"
-  skip: true  # [osx]
-{% if major_minor == "10.1" %}
-  skip: true  # [ppc64le]
+{% if version_patch == "skip" %}
+  skip: true
 {% endif %}
   rpaths_patcher: LIEF  # [ppc64le]
   script: |
-    python build.py --version {{ version }} --version-patch {{ version_patch }}
+    python build.py --version={{ version }} --version-patch={{ version_patch }} --runfile={{ runfile }}
     if errorlevel 1 exit 1                                                 # [win]
 
     :: copy nvvm and libdevice into the DLLs folder so numba can use them  # [win]
