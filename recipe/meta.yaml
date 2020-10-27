@@ -119,10 +119,10 @@
 {% set subdomain = cudavars[major_minor]["subdomain"] %}
 {% set download_dir = cudavars[major_minor]["download_dir"] %}
 
-{% set runfile = "cuda_" + version + "_" + version_patch + "_linux" + cudavars[major_minor]["blob_ext"]["linux64"] %}  # [linux64]
-{% set runfile = "cuda_" + version + "_" + version_patch + "_mac" + cudavars[major_minor]["blob_ext"]["osx"] %}  # [osx]
-{% set runfile = "cuda_" + version + "_" + version_patch + "_linux_ppc64le" + cudavars[major_minor]["blob_ext"]["ppc64le"] %}  # [ppc64le]
-{% set runfile = "cuda_" + version + "_" + version_patch + "_win10" + cudavars[major_minor]["blob_ext"]["win"] %}  # [win]
+{% set runfile = "cuda_" + version + "_" + version_patch + "_linux" + cudavars[major_minor]["blob_ext"].get("linux64", "NONE") %}  # [linux64]
+{% set runfile = "cuda_" + version + "_" + version_patch + "_mac" + cudavars[major_minor]["blob_ext"].get("osx", "NONE") %}  # [osx]
+{% set runfile = "cuda_" + version + "_" + version_patch + "_linux_ppc64le" + cudavars[major_minor]["blob_ext"].get("ppc64le", "NONE") %}  # [ppc64le]
+{% set runfile = "cuda_" + version + "_" + version_patch + "_win10" + cudavars[major_minor]["blob_ext"].get("win", "NONE") %}  # [win]
 
 
 package:
