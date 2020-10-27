@@ -137,17 +137,20 @@
 {% set version_patch = cudavars[major_minor]["version_patch"]["osx"] %}  # [osx]
 {% set version_patch = cudavars[major_minor]["version_patch"]["ppc64le"] %}  # [ppc64le]
 {% set version_patch = cudavars[major_minor]["version_patch"]["win"] %}  # [win]
+{% set subdomain = cudavars[major_minor]["subdomain"] %}
+{% set download_dir = cudavars[major_minor]["download_dir"] %}
+
+# Set runfile
 {% if version_patch == "" %}
     {% set version_patch_underscore = "" %}
 {% else %}
     {% set version_patch_underscore = "_" %}
 {% endif %}
-{% set subdomain = cudavars[major_minor]["subdomain"] %}
-{% set download_dir = cudavars[major_minor]["download_dir"] %}
-{% set blob_ext = cudavars[major_minor]["blob_ext"]["linux64"] %}  # [linux64]
-{% set blob_ext = cudavars[major_minor]["blob_ext"]["osx"] %}  # [osx]
-{% set blob_ext = cudavars[major_minor]["blob_ext"]["ppc64le"] %}  # [ppc64le]
-{% set blob_ext = cudavars[major_minor]["blob_ext"]["win"] %}  # [win]
+{% set runfile_pre = "cuda_" + version + version_patch_underscore + version_patch %}
+{% set runfile = runfile_pre + "_linux" + cudavars[major_minor]["blob_ext"].get("linux64", "NONE") %}  # [linux64]
+{% set runfile = runfile_pre + "_mac" + cudavars[major_minor]["blob_ext"].get("osx", "NONE") %}  # [osx]
+{% set runfile = runfile_pre + "_linux_ppc64le" + cudavars[major_minor]["blob_ext"].get("ppc64le", "NONE") %}  # [ppc64le]
+{% set runfile = runfile_pre + "_win10" + cudavars[major_minor]["blob_ext"].get("win", "NONE") %}  # [win]
 
 
 package:
@@ -157,11 +160,11 @@ package:
 
 source:
   - path: ./build.py
-  - url: https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/cuda_{{ version }}{{ version_patch_underscore }}{{ version_patch }}_linux{{ blob_ext }}  # [linux64]
+  - fn: {{ runfile }}
+    url: https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/{{ runfile }}
     md5: {{ cudavars[major_minor]["checksums"]["linux64"] }}  # [linux64]
-  - url: https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/cuda_{{ version }}{{ version_patch_underscore }}{{ version_patch }}_linux_ppc64le{{ blob_ext }}  # [ppc64le]
+    md5: {{ cudavars[major_minor]["checksums"]["osx"] }}  # [osx]
     md5: {{ cudavars[major_minor]["checksums"]["ppc64le"] }}  # [ppc64le]
-  - url: https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/cuda_{{ version }}{{ version_patch_underscore }}{{ version_patch }}_win10{{ blob_ext }}  # [win]
     md5: {{ cudavars[major_minor]["checksums"]["win"] }}  # [win]
 
 build:
@@ -181,7 +184,7 @@ build:
 {% endif %}
   rpaths_patcher: LIEF  # [ppc64le]
   script: |
-    python build.py --version={{ version }} --version-patch={{ version_patch }} --blob-ext={{ blob_ext }}
+    python build.py --version={{ version }} --version-patch={{ version_patch }} --runfile={{ runfile }}
     if errorlevel 1 exit 1                                                 # [win]
 
     :: copy nvvm and libdevice into the DLLs folder so numba can use them  # [win]
