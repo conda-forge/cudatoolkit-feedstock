@@ -25,7 +25,7 @@ class Extractor(object):
     from this class.
     """
 
-    def __init__(self, plat, version, version_patch, blob_ext):
+    def __init__(self, plat, version, version_patch, runfile):
         """Base class for extracting cudatoolkit
 
         Parameters
@@ -36,8 +36,9 @@ class Extractor(object):
             Full version sting for cudatoolkit in X.Y.Z form, i.e. 11.0.3
         version_patch : str
             Extra version patch number, e.g. 450.51.06
-        blob_ext : str
-            Downloaded local runfile (blob) filename extension, e.g. '.run' or '.exe'
+        runfile : str
+            Downloaded local runfile (blob) filename. This is just the basename,
+            not the full path.
 
         Attributes
         ----------
@@ -69,7 +70,7 @@ class Extractor(object):
         else:
             raise ValueError(f"{version!r} not a valid version string")
         self.major_minor = (int(self.major), int(self.minor))
-        self.blob_ext = blob_ext
+        self.runfile = runfile
 
         # set attrs
         self.cuda_libraries = [
@@ -197,10 +198,9 @@ class Extractor(object):
 class WindowsExtractor(Extractor):
     """The windows extractor"""
 
-    def __init__(self, plat, version, version_patch, blob_ext):
-        super().__init__(plat, version, version_patch, blob_ext)
+    def __init__(self, plat, version, version_patch, runfile):
+        super().__init__(plat, version, version_patch, runfile)
         self.cuda_libraries.append("cuinj")
-        self.runfile = f"cuda_{version}_{version_patch}_win10{blob_ext}"
         self.embedded_blob = None
         self.symlinks = False
         self.cuda_lib_fmt = "{0}64_1*.dll"
@@ -300,8 +300,8 @@ class WindowsExtractor(Extractor):
 class LinuxExtractor(Extractor):
     """The linux extractor"""
 
-    def __init__(self, plat, version, version_patch, blob_ext):
-        super().__init__(plat, version, version_patch, blob_ext)
+    def __init__(self, plat, version, version_patch, runfile):
+        super().__init__(plat, version, version_patch, runfile)
         self.symlinks = True
         # need globs to handle symlinks
         self.cuda_lib_fmt = "lib{0}.so*"
@@ -316,14 +316,12 @@ class LinuxExtractor(Extractor):
         if self.machine == "ppc64le":
             # Power 8 Arch
             cuda_libs = ["accinj64", "cuinj64"]
-            self.runfile = f"cuda_{version}_{version_patch}_linux_ppc64le{blob_ext}"
             self.embedded_blob = None
             if self.major_minor <= (10, 1):
                 self.cuda_lib_reldir = "targets/ppc64le-linux/lib"
         else:
             # x86-64 Arch
             cuda_libs = ["accinj64", "cuinj64"]
-            self.runfile = f"cuda_{version}_{version_patch}_linux{blob_ext}"
             self.embedded_blob = None
         self.cuda_libraries.extend(cuda_libs)
 
@@ -438,7 +436,7 @@ def make_parser():
     p = ArgumentParser("build.py")
     p.add_argument("--version", dest="version")
     p.add_argument("--version-patch", dest="version_patch")
-    p.add_argument("--blob-ext", dest="blob_ext")
+    p.add_argument("--runfile", dest="runfile")
     return p
 
 
@@ -450,7 +448,7 @@ def main():
     # get an extractor & extract
     plat = getplatform()
     extractor_impl = DISPATCHER[plat]
-    extractor = extractor_impl(plat, ns.version, ns.version_patch, ns.blob_ext)
+    extractor = extractor_impl(plat, ns.version, ns.version_patch, ns.runfile)
     extractor.extract()
 
 
