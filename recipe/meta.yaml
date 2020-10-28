@@ -27,6 +27,8 @@
 #       https://developer.download.nvidia.com/compute/cuda/10.0/Prod/docs/sidebar/md5sum.txt
 #   For 9.2.148, the URL is:
 #       http://developer.download.nvidia.com/compute/cuda/9.2/Prod2/docs/sidebar/md5sum.txt
+# sysroot_version: The version of sysroot_linux-64 that will be used. Currently only used
+#   on linux64. If this key is not present, then no sysroot requirement is used.
 
 {% set cudavars = {
   "9.2": {
@@ -129,6 +131,7 @@
       "ppc64le": ".run",
       "win": ".exe",
     },
+    "sysroot_version": "2.17",
   },
 }
 %}
@@ -168,7 +171,7 @@ source:
     md5: {{ cudavars[major_minor]["checksums"]["win"] }}  # [win]
 
 build:
-  number: 0
+  number: 1
   script_env:
     - NVTOOLSEXT_INSTALL_PATH
     - DEBUG_INSTALLER_PATH
@@ -202,7 +205,9 @@ requirements:
     # for run_exports
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - sysroot_linux-64 2.17  # [linux64]
+{% if "sysroot_version" in cudavars[major_minor] %}
+    - sysroot_linux-64 {{ cudavars[major_minor]["sysroot_version"] }}  # [linux64]
+{% endif %}
   run_constrained:
     - __cuda >={{ major_minor }}
 
