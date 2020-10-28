@@ -25,7 +25,7 @@ class Extractor(object):
     from this class.
     """
 
-    def __init__(self, plat, version, version_patch):
+    def __init__(self, plat, version, version_patch, runfile):
         """Base class for extracting cudatoolkit
 
         Parameters
@@ -36,6 +36,9 @@ class Extractor(object):
             Full version sting for cudatoolkit in X.Y.Z form, i.e. 11.0.3
         version_patch : str
             Extra version patch number, e.g. 450.51.06
+        runfile : str
+            Downloaded local runfile (blob) filename. This is just the basename,
+            not the full path.
 
         Attributes
         ----------
@@ -57,6 +60,8 @@ class Extractor(object):
             String format for the nvvm libraries
         libdevice_lib_fmt : str
             string format for the libdevice.compute bitcode file
+        version_patch_underscore : str
+            An "_" stting if version_patch is non-empty. An empty string otherwise.
         """
         self.version = version
         version_parts = version.split(".")
@@ -67,11 +72,11 @@ class Extractor(object):
         else:
             raise ValueError(f"{version!r} not a valid version string")
         self.major_minor = (int(self.major), int(self.minor))
+        self.runfile = runfile
 
         # set attrs
         self.cuda_libraries = [
             "cublas",
-            "cublasLt",
             "cudart",
             "cufft",
             "cufftw",
@@ -94,6 +99,8 @@ class Extractor(object):
             "nvrtc",
             "nvrtc-builtins",
         ]
+        if self.major_minor >= (10, 1):
+            self.cuda_libraries.append("cublasLt")
         if self.major_minor >= (10, 2):
             self.cuda_libraries.append("nvjpeg")
         if self.major_minor >= (11, 0):
@@ -193,17 +200,20 @@ class Extractor(object):
 class WindowsExtractor(Extractor):
     """The windows extractor"""
 
-    def __init__(self, plat, version, version_patch):
-        super().__init__(plat, version, version_patch)
+    def __init__(self, plat, version, version_patch, runfile):
+        super().__init__(plat, version, version_patch, runfile)
         self.cuda_libraries.append("cuinj")
-        self.runfile = f"cuda_{version}_{version_patch}_win10.exe"
         self.embedded_blob = None
         self.symlinks = False
-        self.cuda_lib_fmt = "{0}64_1*.dll"
-        self.cuda_static_lib_fmt = "{0}.lib"
-        self.nvvm_lib_fmt = "{0}64_33_0.dll"
-        self.nvtoolsext_fmt = "{0}64_1.dll"
+        if self.major_minor == (9, 2):
+            self.cuda_lib_fmt = "{0}64_92.dll"
+            self.nvvm_lib_fmt = "{0}64_32_0.dll"
+        else:
+            self.cuda_lib_fmt = "{0}64_1*.dll"
+            self.nvvm_lib_fmt = "{0}64_33_0.dll"
         self.libdevice_lib_fmt = "libdevice.10.bc"
+        self.cuda_static_lib_fmt = "{0}.lib"
+        self.nvtoolsext_fmt = "{0}64_1.dll"
         pfs = ["Program Files", "Program Files (x86)"]
         nvidias = ["NVIDIA Corporation", "NVIDIA GPU Computing Toolkit"]
         nvtxs = ["NVToolsExt", "NvToolsExt", "nvToolsExt"]
@@ -296,8 +306,8 @@ class WindowsExtractor(Extractor):
 class LinuxExtractor(Extractor):
     """The linux extractor"""
 
-    def __init__(self, plat, version, version_patch):
-        super().__init__(plat, version, version_patch)
+    def __init__(self, plat, version, version_patch, runfile):
+        super().__init__(plat, version, version_patch, runfile)
         self.symlinks = True
         # need globs to handle symlinks
         self.cuda_lib_fmt = "lib{0}.so*"
@@ -312,14 +322,12 @@ class LinuxExtractor(Extractor):
         if self.machine == "ppc64le":
             # Power 8 Arch
             cuda_libs = ["accinj64", "cuinj64"]
-            self.runfile = f"cuda_{version}_{version_patch}_linux_ppc64le.run"
             self.embedded_blob = None
             if self.major_minor <= (10, 1):
                 self.cuda_lib_reldir = "targets/ppc64le-linux/lib"
         else:
             # x86-64 Arch
             cuda_libs = ["accinj64", "cuinj64"]
-            self.runfile = f"cuda_{version}_{version_patch}_linux.run"
             self.embedded_blob = None
         self.cuda_libraries.extend(cuda_libs)
 
@@ -390,8 +398,8 @@ class LinuxExtractor(Extractor):
                 # add toolkit install args
                 if self.major_minor >= (10, 2):
                     cmd.append(f"--installpath={tmpd}")
-                else:
-                    # <=10.1
+                elif self.major_minor == (10, 1):
+                    # v10.1
                     cmd.extend([
                         f"--toolkitpath={tmpd}",
                         f"--librarypath={tmpd}",
@@ -400,6 +408,9 @@ class LinuxExtractor(Extractor):
                         # cublas headers are not available, though the runfile
                         # thinks that they are.
                         check = False
+                else:
+                    # <=10.0
+                    cmd.append(f"--toolkitpath={tmpd}")
                 self.run_extract(cmd, check=check)
             for p in self.patches:
                 os.chmod(p, 0o777)
@@ -431,6 +442,7 @@ def make_parser():
     p = ArgumentParser("build.py")
     p.add_argument("--version", dest="version")
     p.add_argument("--version-patch", dest="version_patch")
+    p.add_argument("--runfile", dest="runfile")
     return p
 
 
@@ -442,7 +454,7 @@ def main():
     # get an extractor & extract
     plat = getplatform()
     extractor_impl = DISPATCHER[plat]
-    extractor = extractor_impl(plat, ns.version, ns.version_patch)
+    extractor = extractor_impl(plat, ns.version, ns.version_patch, ns.runfile)
     extractor.extract()
 
 
