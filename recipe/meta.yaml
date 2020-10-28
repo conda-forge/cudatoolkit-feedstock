@@ -25,8 +25,31 @@
 #       http://developer.download.nvidia.com/compute/cuda/10.1/Prod/docs3/sidebar/md5sum.txt
 #   For 10.0.130, the URL differs by the subdir:
 #       https://developer.download.nvidia.com/compute/cuda/10.0/Prod/docs/sidebar/md5sum.txt
+#   For 9.2.148, the URL is:
+#       http://developer.download.nvidia.com/compute/cuda/9.2/Prod2/docs/sidebar/md5sum.txt
+# sysroot_version: The version of sysroot_linux-64 that will be used. Currently only used
+#   on linux64. If this key is not present, then no sysroot requirement is used.
 
 {% set cudavars = {
+  "9.2": {
+    "version": "9.2.148",
+    "version_patch": {
+      "linux64": "396.37",
+      "osx": "skip",
+      "ppc64le": "skip",
+      "win": "",
+    },
+    "subdomain": "developer",
+    "download_dir": major_minor + "/Prod2",
+    "checksums": {
+      "linux64": "8303cdf46904e6dea8d5d641b0b46f0d",
+      "win": "efaf92a93bdef21da29aba8a8768a16d",
+    },
+    "blob_ext": {
+      "linux64": "",
+      "win": "",
+    },
+  },
   "10.0": {
     "version": "10.0.130",
     "version_patch": {
@@ -108,6 +131,7 @@
       "ppc64le": ".run",
       "win": ".exe",
     },
+    "sysroot_version": "2.17",
   },
 }
 %}
@@ -119,10 +143,17 @@
 {% set subdomain = cudavars[major_minor]["subdomain"] %}
 {% set download_dir = cudavars[major_minor]["download_dir"] %}
 
-{% set runfile = "cuda_" + version + "_" + version_patch + "_linux" + cudavars[major_minor]["blob_ext"].get("linux64", "NONE") %}  # [linux64]
-{% set runfile = "cuda_" + version + "_" + version_patch + "_mac" + cudavars[major_minor]["blob_ext"].get("osx", "NONE") %}  # [osx]
-{% set runfile = "cuda_" + version + "_" + version_patch + "_linux_ppc64le" + cudavars[major_minor]["blob_ext"].get("ppc64le", "NONE") %}  # [ppc64le]
-{% set runfile = "cuda_" + version + "_" + version_patch + "_win10" + cudavars[major_minor]["blob_ext"].get("win", "NONE") %}  # [win]
+# Set runfile
+{% if version_patch == "" %}
+    {% set version_patch_underscore = "" %}
+{% else %}
+    {% set version_patch_underscore = "_" %}
+{% endif %}
+{% set runfile_pre = "cuda_" + version + version_patch_underscore + version_patch %}
+{% set runfile = runfile_pre + "_linux" + cudavars[major_minor]["blob_ext"].get("linux64", "NONE") %}  # [linux64]
+{% set runfile = runfile_pre + "_mac" + cudavars[major_minor]["blob_ext"].get("osx", "NONE") %}  # [osx]
+{% set runfile = runfile_pre + "_linux_ppc64le" + cudavars[major_minor]["blob_ext"].get("ppc64le", "NONE") %}  # [ppc64le]
+{% set runfile = runfile_pre + "_win10" + cudavars[major_minor]["blob_ext"].get("win", "NONE") %}  # [win]
 
 
 package:
@@ -140,7 +171,7 @@ source:
     md5: {{ cudavars[major_minor]["checksums"]["win"] }}  # [win]
 
 build:
-  number: 0
+  number: 1
   script_env:
     - NVTOOLSEXT_INSTALL_PATH
     - DEBUG_INSTALLER_PATH
@@ -156,7 +187,7 @@ build:
 {% endif %}
   rpaths_patcher: LIEF  # [ppc64le]
   script: |
-    python build.py --version {{ version }} --version-patch {{ version_patch }} --runfile={{ runfile }}
+    python build.py --version={{ version }} --version-patch={{ version_patch }} --runfile={{ runfile }}
     if errorlevel 1 exit 1                                                 # [win]
 
     :: copy nvvm and libdevice into the DLLs folder so numba can use them  # [win]
@@ -174,7 +205,9 @@ requirements:
     # for run_exports
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - sysroot_linux-64 2.17  # [linux64]
+{% if "sysroot_version" in cudavars[major_minor] %}
+    - sysroot_linux-64 {{ cudavars[major_minor]["sysroot_version"] }}  # [linux64]
+{% endif %}
   run_constrained:
     - __cuda >={{ major_minor }}
 
