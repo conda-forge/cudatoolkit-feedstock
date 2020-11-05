@@ -133,6 +133,28 @@
     },
     "sysroot_version": "2.17",
   },
+  "11.1": {
+    "version": "11.1.1",
+    "version_patch": {
+      "linux64": "455.32.00",
+      "osx": "skip",
+      "ppc64le": "455.32.00",
+      "win": "456.81",
+    },
+    "subdomain": "developer.download",
+    "download_dir": "11.1.1",
+    "checksums": {
+      "linux64": "c24e2755e3868692051a38797ce01044",
+      "ppc64le": "d0b53036e8dcdc8dc22191feb913a3a0",
+      "win": "a89dfad35fc1adf02a848a9c06cfff15",
+    },
+    "blob_ext": {
+      "linux64": ".run",
+      "ppc64le": ".run",
+      "win": ".exe",
+    },
+    "sysroot_version": "2.17",
+  },
 }
 %}
 {% set version = cudavars[major_minor]["version"] %}
