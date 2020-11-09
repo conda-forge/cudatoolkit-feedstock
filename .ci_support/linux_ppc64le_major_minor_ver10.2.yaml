@@ -14,6 +14,8 @@ cxx_compiler_version:
 - '8'
 docker_image:
 - condaforge/linux-anvil-ppc64le
+major_minor_ver:
+- '10.2'
 target_platform:
 - linux-ppc64le
 zip_keys:

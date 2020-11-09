@@ -8,8 +8,20 @@ jobs:
     vmImage: vs2017-win2016
   strategy:
     matrix:
-      win_64_:
-        CONFIG: win_64_
+      win_64_major_minor_ver10.0:
+        CONFIG: win_64_major_minor_ver10.0
+        UPLOAD_PACKAGES: 'True'
+      win_64_major_minor_ver10.1:
+        CONFIG: win_64_major_minor_ver10.1
+        UPLOAD_PACKAGES: 'True'
+      win_64_major_minor_ver10.2:
+        CONFIG: win_64_major_minor_ver10.2
+        UPLOAD_PACKAGES: 'True'
+      win_64_major_minor_ver11.0:
+        CONFIG: win_64_major_minor_ver11.0
+        UPLOAD_PACKAGES: 'True'
+      win_64_major_minor_ver9.2:
+        CONFIG: win_64_major_minor_ver9.2
         UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
   variables:
