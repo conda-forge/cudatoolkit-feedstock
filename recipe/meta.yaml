@@ -3,7 +3,7 @@
 # Copyright (c) 2017, Continuum Analytics, Inc. All rights reserved.
 #
 # Distribution of the content approved by NVIDIA ( http://nvbugs/3052604 )
-{% set major_minor = "11.0" %}
+{% set major_minor = major_minor_ver %}
 
 # The following cudavars dictionary is a table of metadata for selecting various
 # paramaters based on the X.Y version number of cudatoolkit. The following is a description

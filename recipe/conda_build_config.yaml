@@ -1,3 +1,10 @@
+major_minor_ver:
+  - 9.2
+  - 10.0
+  - 10.1
+  - 10.2
+  - 11.0
+
 cuda_compiler_version:                  # [linux64]
   - None                                # [linux64]
 docker_image:                           # [linux64]
