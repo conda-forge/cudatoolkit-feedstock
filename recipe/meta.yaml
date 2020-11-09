@@ -187,6 +187,7 @@ build:
 {% endif %}
   rpaths_patcher: LIEF  # [ppc64le]
   script: |
+    echo {{ major_minor_ver }}
     python build.py --version={{ version }} --version-patch={{ version_patch }} --runfile={{ runfile }}
     if errorlevel 1 exit 1                                                 # [win]
 
