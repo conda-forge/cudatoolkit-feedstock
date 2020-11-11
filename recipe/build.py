@@ -204,7 +204,6 @@ class WindowsExtractor(Extractor):
 
     def __init__(self, plat, version, version_patch, runfile):
         super().__init__(plat, version, version_patch, runfile)
-        self.cuda_libraries.append("cuinj")
         self.embedded_blob = None
         self.symlinks = False
         if self.major_minor == (9, 2):
@@ -310,6 +309,7 @@ class LinuxExtractor(Extractor):
 
     def __init__(self, plat, version, version_patch, runfile):
         super().__init__(plat, version, version_patch, runfile)
+        self.embedded_blob = None
         self.symlinks = True
         # need globs to handle symlinks
         self.cuda_lib_fmt = "lib{0}.so*"
@@ -320,19 +320,6 @@ class LinuxExtractor(Extractor):
         self.libdir = "lib"
         self.cuda_lib_reldir = "lib64"
         self.machine = platform.machine()
-
-        if self.machine == "ppc64le":
-            # Power 8 Arch
-            cuda_libs = ["accinj64", "cuinj64"]
-            self.embedded_blob = None
-            if self.major_minor <= (10, 1):
-                self.cuda_lib_reldir = "targets/ppc64le-linux/lib"
-        else:
-            # x86-64 Arch
-            cuda_libs = ["accinj64", "cuinj64"]
-            self.embedded_blob = None
-        self.cuda_libraries.extend(cuda_libs)
-
         self.post_init()
 
     def copy(self, basepath):
