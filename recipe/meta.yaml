@@ -3,7 +3,7 @@
 # Copyright (c) 2017, Continuum Analytics, Inc. All rights reserved.
 #
 # Distribution of the content approved by NVIDIA ( http://nvbugs/3052604 )
-{% set major_minor = "11.0" %}
+{% set major_minor = major_minor_ver|default("11.0") %}
 
 # The following cudavars dictionary is a table of metadata for selecting various
 # paramaters based on the X.Y version number of cudatoolkit. The following is a description
@@ -171,7 +171,7 @@ source:
     md5: {{ cudavars[major_minor]["checksums"]["win"] }}  # [win]
 
 build:
-  number: 1
+  number: 2
   script_env:
     - NVTOOLSEXT_INSTALL_PATH
     - DEBUG_INSTALLER_PATH
@@ -187,6 +187,7 @@ build:
 {% endif %}
   rpaths_patcher: LIEF  # [ppc64le]
   script: |
+    echo {{ major_minor_ver }}
     python build.py --version={{ version }} --version-patch={{ version_patch }} --runfile={{ runfile }}
     if errorlevel 1 exit 1                                                 # [win]
 

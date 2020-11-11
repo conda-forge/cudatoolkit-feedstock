@@ -6,5 +6,7 @@ channel_targets:
 - conda-forge test
 cxx_compiler:
 - vs2017
+major_minor_ver:
+- '10.0'
 target_platform:
 - win-64
