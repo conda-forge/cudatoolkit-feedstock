@@ -217,6 +217,11 @@ test:
     - numba
     - python >=3.7
     - setuptools  # for pkg_resources
+  commands:
+    - test ! -f "${PREFIX}/lib/libaccinj64.so"         # [linux]
+    - test ! -f "${PREFIX}/lib/libcuinj64.so"          # [linux]
+    - if exist %LIBRARY_BIN%\\libaccinj64*.dll exit 1  # [win]
+    - if exist %LIBRARY_BIN%\\libcuinj64*.dll exit 1   # [win]
 
 about:
   home: https://developer.nvidia.com/cuda-toolkit
