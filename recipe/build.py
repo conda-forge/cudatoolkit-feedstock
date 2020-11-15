@@ -101,7 +101,7 @@ class Extractor(object):
         ]
         if self.major_minor >= (10, 1):
             self.cuda_libraries.append("cublasLt")
-        if self.major_minor >= (10, 2):
+        if self.major_minor >= (10, 0):
             self.cuda_libraries.append("nvjpeg")
         if self.major_minor < (11, 0):
             self.cuda_libraries.append("nppicom")
