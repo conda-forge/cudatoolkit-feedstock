@@ -24,6 +24,10 @@ jobs:
         CONFIG: linux_64_major_minor_ver11.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: condaforge/linux-anvil-cos7-x86_64
+      linux_64_major_minor_ver11.1:
+        CONFIG: linux_64_major_minor_ver11.1
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: condaforge/linux-anvil-cos7-x86_64
       linux_64_major_minor_ver9.2:
         CONFIG: linux_64_major_minor_ver9.2
         UPLOAD_PACKAGES: 'True'
