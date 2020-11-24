@@ -80,6 +80,7 @@ class Extractor(object):
             "cudart",
             "cufft",
             "cufftw",
+            "cupti",
             "curand",
             "cusolver",
             "cusparse",
@@ -167,16 +168,20 @@ class Extractor(object):
             pathlist.extend(pathsforlib)
         return pathlist
 
-    def copy_files(self, cuda_lib_dir, nvvm_lib_dir, libdevice_lib_dir):
+    def copy_files(self, cuda_lib_dir, nvvm_lib_dir, libdevice_lib_dir, cupti_dir):
         """Copies the various cuda libraries and bc files to the output_dir"""
         filepaths = []
-        # nvToolsExt is different to the rest of the cuda libraries,
-        # it follows a different naming convention, this accommodates...
-        cudalibs = [x for x in self.cuda_libraries if x != "nvToolsExt"]
+        # nvToolsExt and cupti are different to the rest of the cuda libraries,
+        # they follow different naming conventions or locations, this accommodates...
+        cudalibs = [x for x in self.cuda_libraries if x not in ("nvToolsExt", "cupti")]
         filepaths += self.get_paths(cudalibs, cuda_lib_dir, self.cuda_lib_fmt)
         if "nvToolsExt" in self.cuda_libraries:
             filepaths += self.get_paths(
                 ["nvToolsExt"], cuda_lib_dir, self.nvtoolsext_fmt
+            )
+        if "cupti" in self.cuda_libraries:
+            filepaths += self.get_paths(
+                ["cupti"], cupti_dir, self.cupti_fmt
             )
         filepaths += self.get_paths(
             self.cuda_static_libraries, cuda_lib_dir, self.cuda_static_lib_fmt
@@ -215,6 +220,8 @@ class WindowsExtractor(Extractor):
         self.libdevice_lib_fmt = "libdevice.10.bc"
         self.cuda_static_lib_fmt = "{0}.lib"
         self.nvtoolsext_fmt = "{0}64_1.dll"
+        self.cupti_fmt = "{0}*.dll"
+
         pfs = ["Program Files", "Program Files (x86)"]
         nvidias = ["NVIDIA Corporation", "NVIDIA GPU Computing Toolkit"]
         nvtxs = ["NVToolsExt", "NvToolsExt", "nvToolsExt"]
@@ -234,7 +241,7 @@ class WindowsExtractor(Extractor):
 
     def copy(self, *args):
         (store,) = args
-        self.copy_files(cuda_lib_dir=store, nvvm_lib_dir=store, libdevice_lib_dir=store)
+        self.copy_files(cuda_lib_dir=store, nvvm_lib_dir=store, libdevice_lib_dir=store, cupti_dir=store)
 
     def extract(self):
         try:
@@ -317,6 +324,7 @@ class LinuxExtractor(Extractor):
         self.nvvm_lib_fmt = "lib{0}.so*"
         self.nvtoolsext_fmt = "lib{0}.so*"
         self.nvtoolsextpath = None
+        self.cupti_fmt = "lib{0}.so*"
         self.libdir = "lib"
         self.cuda_lib_reldir = "lib64"
         self.machine = platform.machine()
@@ -327,6 +335,7 @@ class LinuxExtractor(Extractor):
             cuda_lib_dir=os.path.join(basepath, self.cuda_lib_reldir),
             nvvm_lib_dir=os.path.join(basepath, "nvvm", "lib64"),
             libdevice_lib_dir=os.path.join(basepath, "nvvm", "libdevice"),
+            cupti_dir=os.path.join(basepath, "extras", "CUPTI", "lib64")
         )
 
     @staticmethod
