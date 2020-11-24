@@ -220,7 +220,7 @@ class WindowsExtractor(Extractor):
         self.libdevice_lib_fmt = "libdevice.10.bc"
         self.cuda_static_lib_fmt = "{0}.lib"
         self.nvtoolsext_fmt = "{0}64_1.dll"
-        self.cupti_fmt = "{0}*.dll"
+        self.cupti_fmt = "{0}64_*.dll"
 
         pfs = ["Program Files", "Program Files (x86)"]
         nvidias = ["NVIDIA Corporation", "NVIDIA GPU Computing Toolkit"]
