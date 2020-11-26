@@ -1,17 +1,17 @@
 c_compiler:
 - gcc
 c_compiler_version:
-- '7'
+- '9'
 cdt_name:
 - cos6
 channel_sources:
 - conda-forge,defaults
 channel_targets:
-- conda-forge test
+- conda-forge main
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '7'
+- '9'
 docker_image:
 - condaforge/linux-anvil-cos7-x86_64
 major_minor_ver:
