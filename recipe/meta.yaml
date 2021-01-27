@@ -155,6 +155,28 @@
     },
     "sysroot_version": "2.17",
   },
+  "11.2": {
+    "version": "11.2.0",
+    "version_patch": {
+      "linux64": "460.27.04",
+      "osx": "skip",
+      "ppc64le": "460.27.04",
+      "win": "460.89",
+    },
+    "subdomain": "developer.download",
+    "download_dir": "11.2.0",
+    "checksums": {
+      "linux64": "04b39f63c3b97153631ca12ed230be51",
+      "ppc64le": "d253e8971d4133426900b42632662d31",
+      "win": "92f38c37ce9c6c11d27c10701b040256",
+    },
+    "blob_ext": {
+      "linux64": ".run",
+      "ppc64le": ".run",
+      "win": ".exe",
+    },
+    "sysroot_version": "2.17",
+  },
 }
 %}
 {% set version = cudavars[major_minor]["version"] %}
@@ -193,7 +215,7 @@ source:
     md5: {{ cudavars[major_minor]["checksums"]["win"] }}  # [win]
 
 build:
-  number: 6
+  number: 7
   script_env:
     - NVTOOLSEXT_INSTALL_PATH
     - DEBUG_INSTALLER_PATH
