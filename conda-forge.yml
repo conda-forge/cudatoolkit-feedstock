@@ -1,4 +1,4 @@
 conda_forge_output_validation: true
 provider: {linux_aarch64: false, linux_ppc64le: default}
 choco:
-- cuda --version=11.2.0
+- cuda --version=11.1.1
