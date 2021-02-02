@@ -211,12 +211,15 @@ class WindowsExtractor(Extractor):
         super().__init__(plat, version, version_patch, runfile)
         self.embedded_blob = None
         self.symlinks = False
-        if self.major_minor == (9, 2):
-            self.cuda_lib_fmt = "{0}64_92.dll"
-            self.nvvm_lib_fmt = "{0}64_32_0.dll"
-        else:
+        if self.major_minor > (11, 1):
+            self.cuda_lib_fmt = "{0}64_1*.dll"
+            self.nvvm_lib_fmt = "{0}64_40_0.dll"
+        elif self.major_minor > (9, 2):
             self.cuda_lib_fmt = "{0}64_1*.dll"
             self.nvvm_lib_fmt = "{0}64_33_0.dll"
+        else:
+            self.cuda_lib_fmt = "{0}64_92.dll"
+            self.nvvm_lib_fmt = "{0}64_32_0.dll"
         self.libdevice_lib_fmt = "libdevice.10.bc"
         self.cuda_static_lib_fmt = "{0}.lib"
         self.nvtoolsext_fmt = "{0}64_1.dll"
