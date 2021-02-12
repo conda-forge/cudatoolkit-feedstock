@@ -32,6 +32,10 @@ jobs:
         CONFIG: linux_64_major_minor_ver11.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      linux_64_major_minor_ver11.2.1:
+        CONFIG: linux_64_major_minor_ver11.2.1
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
       linux_64_major_minor_ver9.2:
         CONFIG: linux_64_major_minor_ver9.2
         UPLOAD_PACKAGES: 'True'
@@ -50,6 +54,10 @@ jobs:
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
       linux_ppc64le_major_minor_ver11.2:
         CONFIG: linux_ppc64le_major_minor_ver11.2
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
+      linux_ppc64le_major_minor_ver11.2.1:
+        CONFIG: linux_ppc64le_major_minor_ver11.2.1
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
   timeoutInMinutes: 360
