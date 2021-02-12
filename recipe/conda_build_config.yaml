@@ -6,6 +6,7 @@ major_minor_ver:
   - 11.0
   - 11.1
   - 11.2
+  - 11.2.1
 
 cuda_compiler_version:                          # [linux64]
   - None                                        # [linux64]
