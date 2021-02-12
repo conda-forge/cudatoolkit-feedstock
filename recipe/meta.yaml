@@ -3,7 +3,7 @@
 # Copyright (c) 2017, Continuum Analytics, Inc. All rights reserved.
 #
 # Distribution of the content approved by NVIDIA ( http://nvbugs/3052604 )
-{% set major_minor = major_minor_ver|default("11.2") %}
+{% set major_minor = major_minor_ver|default("11.2.1") %}
 
 # The following cudavars dictionary is a table of metadata for selecting various
 # paramaters based on the X.Y version number of cudatoolkit. The following is a description
@@ -177,6 +177,28 @@
     },
     "sysroot_version": "2.17",
   },
+  "11.2.1": {
+    "version": "11.2.1",
+    "version_patch": {
+      "linux64": "460.32.03",
+      "osx": "skip",
+      "ppc64le": "460.32.03",
+      "win": "461.09",
+    },
+    "subdomain": "developer.download",
+    "download_dir": "11.2.1",
+    "checksums": {
+      "linux64": "5e33c4fdb409b299b85039e2a223c279",
+      "ppc64le": "e4b2492a5476c994576d7c964ceaf59c",
+      "win": "c34b541d8706b5aa0d8ba7313fff78e7",
+    },
+    "blob_ext": {
+      "linux64": ".run",
+      "ppc64le": ".run",
+      "win": ".exe",
+    },
+    "sysroot_version": "2.17",
+  },
 }
 %}
 {% set version = cudavars[major_minor]["version"] %}
@@ -215,7 +237,7 @@ source:
     md5: {{ cudavars[major_minor]["checksums"]["win"] }}  # [win]
 
 build:
-  number: 7
+  number: 8
   script_env:
     - NVTOOLSEXT_INSTALL_PATH
     - DEBUG_INSTALLER_PATH
