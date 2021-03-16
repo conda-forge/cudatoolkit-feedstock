@@ -240,6 +240,7 @@
 }
 %}
 {% set version = cudavars[major_minor]["version"] %}
+{% set version_patch = cudavars[major_minor]["version_patch"]["aarch64"] %}  # [aarch64]
 {% set version_patch = cudavars[major_minor]["version_patch"]["linux64"] %}  # [linux64]
 {% set version_patch = cudavars[major_minor]["version_patch"]["osx"] %}  # [osx]
 {% set version_patch = cudavars[major_minor]["version_patch"]["ppc64le"] %}  # [ppc64le]
@@ -254,6 +255,7 @@
     {% set version_patch_underscore = "_" %}
 {% endif %}
 {% set runfile_pre = "cuda_" + version + version_patch_underscore + version_patch %}
+{% set runfile = runfile_pre + "_linux_sbsa" + cudavars[major_minor]["blob_ext"].get("aarch64", "NONE") %}  # [aarch64]
 {% set runfile = runfile_pre + "_linux" + cudavars[major_minor]["blob_ext"].get("linux64", "NONE") %}  # [linux64]
 {% set runfile = runfile_pre + "_mac" + cudavars[major_minor]["blob_ext"].get("osx", "NONE") %}  # [osx]
 {% set runfile = runfile_pre + "_linux_ppc64le" + cudavars[major_minor]["blob_ext"].get("ppc64le", "NONE") %}  # [ppc64le]
@@ -269,6 +271,7 @@ source:
   - path: ./build.py
   - fn: {{ runfile }}
     url: https://{{ subdomain }}.nvidia.com/compute/cuda/{{ download_dir }}/local_installers/{{ runfile }}
+    md5: {{ cudavars[major_minor]["checksums"]["aarch64"] }}  # [aarch64]
     md5: {{ cudavars[major_minor]["checksums"]["linux64"] }}  # [linux64]
     md5: {{ cudavars[major_minor]["checksums"]["osx"] }}  # [osx]
     md5: {{ cudavars[major_minor]["checksums"]["ppc64le"] }}  # [ppc64le]
