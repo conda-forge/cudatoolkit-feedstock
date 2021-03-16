@@ -41,8 +41,8 @@ jobs:
 
   steps:
     - script: |
-        choco install cuda --version=11.2.2 -fdv -y --debug
-      displayName: "Install Chocolatey Package: cuda --version=11.2.2"
+        choco install cuda --version=11.2.2.46133 -fdv -y --debug
+      displayName: "Install Chocolatey Package: cuda --version=11.2.2.46133"
 
     - script: |
         choco install vcpython27 -fdv -y --debug
