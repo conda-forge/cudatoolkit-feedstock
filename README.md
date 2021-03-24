@@ -7,7 +7,7 @@ Package license: [NVIDIA End User License Agreement](https://docs.nvidia.com/cud
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/cudatoolkit-feedstock/blob/master/LICENSE.txt)
 
-Summary: CUDA Toolkit - Including CUDA runtime and headers
+Summary: CUDA Toolkit - Including CUDA runtime
 
 Development: https://developer.nvidia.com/cuda-downloads
 
