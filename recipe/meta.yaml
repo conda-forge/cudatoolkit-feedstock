@@ -3,7 +3,7 @@
 # Copyright (c) 2017, Continuum Analytics, Inc. All rights reserved.
 #
 # Distribution of the content approved by NVIDIA ( http://nvbugs/3052604 )
-{% set major_minor = major_minor_ver|default("11.2.1") %}
+{% set major_minor = major_minor_ver|default("11.2.2") %}
 
 # The following cudavars dictionary is a table of metadata for selecting various
 # paramaters based on the X.Y version number of cudatoolkit. The following is a description
@@ -199,6 +199,28 @@
     },
     "sysroot_version": "2.17",
   },
+    "11.2.2": {
+    "version": "11.2.2",
+    "version_patch": {
+      "linux64": "460.32.03",
+      "osx": "skip",
+      "ppc64le": "460.32.03",
+      "win": "461.33",
+    },
+    "subdomain": "developer.download",
+    "download_dir": "11.2.2",
+    "checksums": {
+      "linux64": "955ae5d59531923d32a3bfe3f68a7dfe",
+      "ppc64le": "1b3fc509541f6be0ee820e26a8ae1d88",
+      "win": "f9da6687d8a4f137ff14f8389b496e0a",
+    },
+    "blob_ext": {
+      "linux64": ".run",
+      "ppc64le": ".run",
+      "win": ".exe",
+    },
+    "sysroot_version": "2.17",
+  },
 }
 %}
 {% set version = cudavars[major_minor]["version"] %}
@@ -293,7 +315,7 @@ about:
   home: https://developer.nvidia.com/cuda-toolkit
   # A LicenceRef cannot be used in this case, see:
   # https://github.com/conda-forge/staged-recipes/pull/12882#discussion_r504086944
-  license: NVIDIA End User License Agreement
+  license: LicenseRef-NVIDIA-End-User-License-Agreement
   license_file: NVIDIA_EULA
   license_url: https://docs.nvidia.com/cuda/eula/index.html
   description: |
@@ -303,7 +325,7 @@ about:
 
     License Agreements
     The packages are governed by the CUDA Toolkit End User License Agreement (EULA). By downloading and using the packages, you accept the terms and conditions of the CUDA EULA - https://docs.nvidia.com/cuda/eula/index.html
-  summary: 'CUDA Toolkit - Including CUDA runtime and headers'
+  summary: 'CUDA Toolkit - Including CUDA runtime'
   doc_url: https://docs.nvidia.com/cuda/
   dev_url: https://developer.nvidia.com/cuda-downloads
 
