@@ -3,7 +3,7 @@ About cudatoolkit
 
 Home: https://developer.nvidia.com/cuda-toolkit
 
-Package license: [NVIDIA End User License Agreement](https://docs.nvidia.com/cuda/eula/index.html)
+Package license: [LicenseRef-NVIDIA-End-User-License-Agreement](https://docs.nvidia.com/cuda/eula/index.html)
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/cudatoolkit-feedstock/blob/master/LICENSE.txt)
 
