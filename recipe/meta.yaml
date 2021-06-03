@@ -215,9 +215,10 @@
     },
     "sysroot_version": "2.17",
   },
-    "11.2.2": {
+  "11.2.2": {
     "version": "11.2.2",
     "version_patch": {
+      "aarch64": "460.32.03",
       "linux64": "460.32.03",
       "osx": "skip",
       "ppc64le": "460.32.03",
@@ -226,11 +227,13 @@
     "subdomain": "developer.download",
     "download_dir": "11.2.2",
     "checksums": {
+      "aarch64": "7b49ae76aa5f49983e6dfa6af78df633",
       "linux64": "955ae5d59531923d32a3bfe3f68a7dfe",
       "ppc64le": "1b3fc509541f6be0ee820e26a8ae1d88",
       "win": "f9da6687d8a4f137ff14f8389b496e0a",
     },
     "blob_ext": {
+      "aarch64": ".run",
       "linux64": ".run",
       "ppc64le": ".run",
       "win": ".exe",
