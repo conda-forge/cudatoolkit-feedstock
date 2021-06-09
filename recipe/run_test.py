@@ -2,22 +2,30 @@
 # Distributed under the BSD-2-Clause license
 # Copyright (c) 2017, Continuum Analytics, Inc. All rights reserved.
 
-import sys
 import os
+import platform
+import sys
+
 from numba.cuda.cudadrv.libs import test, get_cudalib
 from numba.cuda.cudadrv.nvvm import NVVM
-
+from packaging import version
 
 def run_test():
-    # on windows only nvvm is available to numba
-    if sys.platform.startswith("win"):
-        nvvm = NVVM()
-        print("NVVM version", nvvm.get_version())
-        return nvvm.get_version() is not None
-    if not test():
-        return False
     nvvm = NVVM()
     print("NVVM version", nvvm.get_version())
+
+    # on windows only nvvm is available to numba
+    if sys.platform.startswith("win"):
+        return nvvm.get_version() is not None
+
+    libc_ver = version.parse(platform.libc_ver()[1])
+    # aarch64 requires GLIBC >= 2.27
+    if platform.machine() == "aarch64" and libc_ver < version.parse("2.27"):
+        print("WARNING: Skipping runtime tests on aarch64 as GLIBC version is lower than 2.27")
+        return nvvm.get_version() is not None
+
+    if not test():
+        return False
 
     extra_lib_tests = (
         "cublas",  # check pkg version matches lib pulled in

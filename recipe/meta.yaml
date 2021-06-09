@@ -325,6 +325,7 @@ requirements:
 test:
   requires:
     - numba
+    - packaging
     - python >=3.7
     - setuptools  # for pkg_resources
   commands:
