@@ -222,7 +222,7 @@
     "sysroot_version": "2.17",
   },
   "11.3": {
-    "version": "11.3",
+    "version": "11.3.0",
     "version_patch": {
       "linux64": "465.19.01",
       "osx": "skip",
@@ -230,7 +230,7 @@
       "win": "465.89",
     },
     "subdomain": "developer.download",
-    "download_dir": "11.3",
+    "download_dir": "11.3.0",
     "checksums": {
       "linux64": "406cecd830bb369fa4d3bd6f50a39a7a",
       "ppc64le": "e28dda25340158eea51d040e90a3aa9f",
@@ -257,6 +257,28 @@
       "linux64": "065d2a85decd34afab7e135c009830ee",
       "ppc64le": "a8fb4ee2900ebfaeba217d652a7484f1",
       "win": "7bf61cf7b059ba08197c70035879c352",
+    },
+    "blob_ext": {
+      "linux64": ".run",
+      "ppc64le": ".run",
+      "win": ".exe",
+    },
+    "sysroot_version": "2.17",
+  },
+  "11.4": {
+    "version": "11.4.0",
+    "version_patch": {
+      "linux64": "470.42.01",
+      "osx": "skip",
+      "ppc64le": "470.42.01",
+      "win": "471.11",
+    },
+    "subdomain": "developer.download",
+    "download_dir": "11.4.0",
+    "checksums": {
+      "linux64": "cbcc1bca492d449c53ab51c782ffb0a2",
+      "ppc64le": "10d22f0ed66d4b87a761a1d5df48e9d4",
+      "win": "423695ea246810200e210f07a0e0bd43",
     },
     "blob_ext": {
       "linux64": ".run",
