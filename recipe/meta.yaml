@@ -325,9 +325,10 @@ build:
     - del {{ RECIPE_DIR }}\post-link.bat {{ RECIPE_DIR }}\run_test.py   # [win]
 
 requirements:
-  host:
-    # add a small, no-deps package to create the host prefix
-    - micromamba
+  build:
+    # for run_exports
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
   run_constrained:
     - __cuda >={{ major_minor }}
 
