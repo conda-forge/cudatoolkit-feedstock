@@ -320,16 +320,22 @@ build:
   string: "{{ number }}_{{ provider }}"
   track_features:
     - cudatoolkit_external
+  script:
+    - rm post-link.sh    # [unix]
+    - del post-link.bat  # [win]
 
 requirements:
   host:
-    - cmake
+    # add a small, no-deps package to create the host prefix
+    - micromamba
   run_constrained:
     - __cuda >={{ major_minor }}
 
 test:
-  commands:
-    - echo "It works!"
+  requires:
+    - numba
+    - python >=3.7
+    - setuptools  # for pkg_resources
 
 {% endif %}
 
