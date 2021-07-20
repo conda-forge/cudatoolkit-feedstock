@@ -321,8 +321,8 @@ build:
   track_features:
     - cudatoolkit_external
   script:
-    - rm {{ RECIPE_DIR }}/post-link.sh    # [unix]
-    - del {{ RECIPE_DIR }}\post-link.bat  # [win]
+    - rm {{ RECIPE_DIR }}/post-link.sh {{ RECIPE_DIR }}/run_test.py     # [unix]
+    - del {{ RECIPE_DIR }}\post-link.bat {{ RECIPE_DIR }}\run_test.py   # [win]
 
 requirements:
   host:
@@ -332,10 +332,8 @@ requirements:
     - __cuda >={{ major_minor }}
 
 test:
-  requires:
-    - numba
-    - python >=3.7
-    - setuptools  # for pkg_resources
+  commands:
+    - echo "It works!"
 
 {% endif %}
 
