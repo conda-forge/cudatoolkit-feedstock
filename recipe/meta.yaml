@@ -243,12 +243,14 @@
 {% set runfile = runfile_pre + "_linux_ppc64le" + cudavars[major_minor]["blob_ext"].get("ppc64le", "NONE") %}  # [ppc64le]
 {% set runfile = runfile_pre + "_win10" + cudavars[major_minor]["blob_ext"].get("win", "NONE") %}  # [win]
 
+{% set number = 9 %}
 
 package:
    name: cudatoolkit
    # match the package version to the libcudart.so version
    version: {{ version }}
 
+{% if provider == 'conda' %}
 source:
   - path: ./build.py
   - fn: {{ runfile }}
@@ -259,7 +261,7 @@ source:
     md5: {{ cudavars[major_minor]["checksums"]["win"] }}  # [win]
 
 build:
-  number: 8
+  number: {{ number }}
   script_env:
     - NVTOOLSEXT_INSTALL_PATH
     - DEBUG_INSTALLER_PATH
@@ -311,6 +313,26 @@ test:
     - if exist %LIBRARY_BIN%\\libaccinj64*.dll exit 1  # [win]
     - if exist %LIBRARY_BIN%\\libcuinj64*.dll exit 1   # [win]
 
+{% else %}
+# This block defines the metadata-only shims
+build:
+  number: {{ number }}
+  string: "{{ number }}_{{ provider }}"
+  track_features:
+    - cudatoolkit_external
+
+requirements:
+  host:
+    - cmake
+  run_constrained:
+    - __cuda >={{ major_minor }}
+
+test:
+  commands:
+    - echo "It works!"
+
+{% endif %}
+
 about:
   home: https://developer.nvidia.com/cuda-toolkit
   # A LicenceRef cannot be used in this case, see:
@@ -337,3 +359,4 @@ extra:
     - raydouglass
     - kkraus14
     - leofang
+    - jaimergp

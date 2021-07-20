@@ -1,3 +1,7 @@
+provider:
+  - conda
+  - external
+
 major_minor_ver:
   - 9.2
   - 10.0
