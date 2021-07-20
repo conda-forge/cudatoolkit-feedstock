@@ -8,32 +8,59 @@ jobs:
     vmImage: vs2017-win2016
   strategy:
     matrix:
-      win_64_major_minor_ver10.0:
-        CONFIG: win_64_major_minor_ver10.0
+      win_64_major_minor_ver10.0providerconda:
+        CONFIG: win_64_major_minor_ver10.0providerconda
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver10.1:
-        CONFIG: win_64_major_minor_ver10.1
+      win_64_major_minor_ver10.0providerexternal:
+        CONFIG: win_64_major_minor_ver10.0providerexternal
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver10.2:
-        CONFIG: win_64_major_minor_ver10.2
+      win_64_major_minor_ver10.1providerconda:
+        CONFIG: win_64_major_minor_ver10.1providerconda
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.0:
-        CONFIG: win_64_major_minor_ver11.0
+      win_64_major_minor_ver10.1providerexternal:
+        CONFIG: win_64_major_minor_ver10.1providerexternal
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.1:
-        CONFIG: win_64_major_minor_ver11.1
+      win_64_major_minor_ver10.2providerconda:
+        CONFIG: win_64_major_minor_ver10.2providerconda
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.2:
-        CONFIG: win_64_major_minor_ver11.2
+      win_64_major_minor_ver10.2providerexternal:
+        CONFIG: win_64_major_minor_ver10.2providerexternal
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.2.1:
-        CONFIG: win_64_major_minor_ver11.2.1
+      win_64_major_minor_ver11.0providerconda:
+        CONFIG: win_64_major_minor_ver11.0providerconda
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.2.2:
-        CONFIG: win_64_major_minor_ver11.2.2
+      win_64_major_minor_ver11.0providerexternal:
+        CONFIG: win_64_major_minor_ver11.0providerexternal
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver9.2:
-        CONFIG: win_64_major_minor_ver9.2
+      win_64_major_minor_ver11.1providerconda:
+        CONFIG: win_64_major_minor_ver11.1providerconda
+        UPLOAD_PACKAGES: 'True'
+      win_64_major_minor_ver11.1providerexternal:
+        CONFIG: win_64_major_minor_ver11.1providerexternal
+        UPLOAD_PACKAGES: 'True'
+      win_64_major_minor_ver11.2.1providerconda:
+        CONFIG: win_64_major_minor_ver11.2.1providerconda
+        UPLOAD_PACKAGES: 'True'
+      win_64_major_minor_ver11.2.1providerexternal:
+        CONFIG: win_64_major_minor_ver11.2.1providerexternal
+        UPLOAD_PACKAGES: 'True'
+      win_64_major_minor_ver11.2.2providerconda:
+        CONFIG: win_64_major_minor_ver11.2.2providerconda
+        UPLOAD_PACKAGES: 'True'
+      win_64_major_minor_ver11.2.2providerexternal:
+        CONFIG: win_64_major_minor_ver11.2.2providerexternal
+        UPLOAD_PACKAGES: 'True'
+      win_64_major_minor_ver11.2providerconda:
+        CONFIG: win_64_major_minor_ver11.2providerconda
+        UPLOAD_PACKAGES: 'True'
+      win_64_major_minor_ver11.2providerexternal:
+        CONFIG: win_64_major_minor_ver11.2providerexternal
+        UPLOAD_PACKAGES: 'True'
+      win_64_major_minor_ver9.2providerconda:
+        CONFIG: win_64_major_minor_ver9.2providerconda
+        UPLOAD_PACKAGES: 'True'
+      win_64_major_minor_ver9.2providerexternal:
+        CONFIG: win_64_major_minor_ver9.2providerexternal
         UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
   variables:
