@@ -321,8 +321,8 @@ build:
   track_features:
     - cudatoolkit_external
   script:
-    - rm post-link.sh    # [unix]
-    - del post-link.bat  # [win]
+    - rm {{ RECIPE_DIR }}/post-link.sh    # [unix]
+    - del {{ RECIPE_DIR }}\post-link.bat  # [win]
 
 requirements:
   host:
