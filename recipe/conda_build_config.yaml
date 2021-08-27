@@ -1,3 +1,6 @@
+arm_variant_type: # [aarch64]
+  - sbsa          # [aarch64]
+
 major_minor_ver:
   - 9.2
   - 10.0
