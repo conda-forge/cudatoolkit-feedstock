@@ -8,327 +8,86 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_major_minor_ver10.0python3.6.____cpython:
-        CONFIG: linux_64_major_minor_ver10.0python3.6.____cpython
+      linux_64_major_minor_ver10.0:
+        CONFIG: linux_64_major_minor_ver10.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver10.0python3.7.____cpython:
-        CONFIG: linux_64_major_minor_ver10.0python3.7.____cpython
+      linux_64_major_minor_ver10.1:
+        CONFIG: linux_64_major_minor_ver10.1
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver10.0python3.8.____cpython:
-        CONFIG: linux_64_major_minor_ver10.0python3.8.____cpython
+      linux_64_major_minor_ver10.2:
+        CONFIG: linux_64_major_minor_ver10.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver10.0python3.9.____cpython:
-        CONFIG: linux_64_major_minor_ver10.0python3.9.____cpython
+      linux_64_major_minor_ver11.0:
+        CONFIG: linux_64_major_minor_ver11.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver10.1python3.6.____cpython:
-        CONFIG: linux_64_major_minor_ver10.1python3.6.____cpython
+      linux_64_major_minor_ver11.1:
+        CONFIG: linux_64_major_minor_ver11.1
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver10.1python3.7.____cpython:
-        CONFIG: linux_64_major_minor_ver10.1python3.7.____cpython
+      linux_64_major_minor_ver11.2:
+        CONFIG: linux_64_major_minor_ver11.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver10.1python3.8.____cpython:
-        CONFIG: linux_64_major_minor_ver10.1python3.8.____cpython
+      linux_64_major_minor_ver11.2.1:
+        CONFIG: linux_64_major_minor_ver11.2.1
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver10.1python3.9.____cpython:
-        CONFIG: linux_64_major_minor_ver10.1python3.9.____cpython
+      linux_64_major_minor_ver11.2.2:
+        CONFIG: linux_64_major_minor_ver11.2.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver10.2python3.6.____cpython:
-        CONFIG: linux_64_major_minor_ver10.2python3.6.____cpython
+      linux_64_major_minor_ver9.2:
+        CONFIG: linux_64_major_minor_ver9.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver10.2python3.7.____cpython:
-        CONFIG: linux_64_major_minor_ver10.2python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver10.2python3.8.____cpython:
-        CONFIG: linux_64_major_minor_ver10.2python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver10.2python3.9.____cpython:
-        CONFIG: linux_64_major_minor_ver10.2python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.0python3.6.____cpython:
-        CONFIG: linux_64_major_minor_ver11.0python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.0python3.7.____cpython:
-        CONFIG: linux_64_major_minor_ver11.0python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.0python3.8.____cpython:
-        CONFIG: linux_64_major_minor_ver11.0python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.0python3.9.____cpython:
-        CONFIG: linux_64_major_minor_ver11.0python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.1python3.6.____cpython:
-        CONFIG: linux_64_major_minor_ver11.1python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.1python3.7.____cpython:
-        CONFIG: linux_64_major_minor_ver11.1python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.1python3.8.____cpython:
-        CONFIG: linux_64_major_minor_ver11.1python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.1python3.9.____cpython:
-        CONFIG: linux_64_major_minor_ver11.1python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.2.1python3.6.____cpython:
-        CONFIG: linux_64_major_minor_ver11.2.1python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.2.1python3.7.____cpython:
-        CONFIG: linux_64_major_minor_ver11.2.1python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.2.1python3.8.____cpython:
-        CONFIG: linux_64_major_minor_ver11.2.1python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.2.1python3.9.____cpython:
-        CONFIG: linux_64_major_minor_ver11.2.1python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.2.2python3.6.____cpython:
-        CONFIG: linux_64_major_minor_ver11.2.2python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.2.2python3.7.____cpython:
-        CONFIG: linux_64_major_minor_ver11.2.2python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.2.2python3.8.____cpython:
-        CONFIG: linux_64_major_minor_ver11.2.2python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.2.2python3.9.____cpython:
-        CONFIG: linux_64_major_minor_ver11.2.2python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.2python3.6.____cpython:
-        CONFIG: linux_64_major_minor_ver11.2python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.2python3.7.____cpython:
-        CONFIG: linux_64_major_minor_ver11.2python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.2python3.8.____cpython:
-        CONFIG: linux_64_major_minor_ver11.2python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver11.2python3.9.____cpython:
-        CONFIG: linux_64_major_minor_ver11.2python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver9.2python3.6.____cpython:
-        CONFIG: linux_64_major_minor_ver9.2python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver9.2python3.7.____cpython:
-        CONFIG: linux_64_major_minor_ver9.2python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver9.2python3.8.____cpython:
-        CONFIG: linux_64_major_minor_ver9.2python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_major_minor_ver9.2python3.9.____cpython:
-        CONFIG: linux_64_major_minor_ver9.2python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_aarch64_major_minor_ver11.0python3.6.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.0python3.6.____cpython
+      linux_aarch64_major_minor_ver11.0:
+        CONFIG: linux_aarch64_major_minor_ver11.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.0python3.7.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.0python3.7.____cpython
+      linux_aarch64_major_minor_ver11.1:
+        CONFIG: linux_aarch64_major_minor_ver11.1
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.0python3.8.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.0python3.8.____cpython
+      linux_aarch64_major_minor_ver11.2:
+        CONFIG: linux_aarch64_major_minor_ver11.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.0python3.9.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.0python3.9.____cpython
+      linux_aarch64_major_minor_ver11.2.1:
+        CONFIG: linux_aarch64_major_minor_ver11.2.1
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.1python3.6.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.1python3.6.____cpython
+      linux_aarch64_major_minor_ver11.2.2:
+        CONFIG: linux_aarch64_major_minor_ver11.2.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.1python3.7.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.1python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.1python3.8.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.1python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.1python3.9.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.1python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.2.1python3.6.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.2.1python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.2.1python3.7.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.2.1python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.2.1python3.8.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.2.1python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.2.1python3.9.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.2.1python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.2.2python3.6.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.2.2python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.2.2python3.7.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.2.2python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.2.2python3.8.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.2.2python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.2.2python3.9.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.2.2python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.2python3.6.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.2python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.2python3.7.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.2python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.2python3.8.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.2python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_aarch64_major_minor_ver11.2python3.9.____cpython:
-        CONFIG: linux_aarch64_major_minor_ver11.2python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
-      linux_ppc64le_major_minor_ver10.2python3.6.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver10.2python3.6.____cpython
+      linux_ppc64le_major_minor_ver10.2:
+        CONFIG: linux_ppc64le_major_minor_ver10.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver10.2python3.7.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver10.2python3.7.____cpython
+      linux_ppc64le_major_minor_ver11.0:
+        CONFIG: linux_ppc64le_major_minor_ver11.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver10.2python3.8.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver10.2python3.8.____cpython
+      linux_ppc64le_major_minor_ver11.1:
+        CONFIG: linux_ppc64le_major_minor_ver11.1
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver10.2python3.9.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver10.2python3.9.____cpython
+      linux_ppc64le_major_minor_ver11.2:
+        CONFIG: linux_ppc64le_major_minor_ver11.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.0python3.6.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.0python3.6.____cpython
+      linux_ppc64le_major_minor_ver11.2.1:
+        CONFIG: linux_ppc64le_major_minor_ver11.2.1
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.0python3.7.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.0python3.7.____cpython
+      linux_ppc64le_major_minor_ver11.2.2:
+        CONFIG: linux_ppc64le_major_minor_ver11.2.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.0python3.8.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.0python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.0python3.9.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.0python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.1python3.6.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.1python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.1python3.7.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.1python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.1python3.8.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.1python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.1python3.9.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.1python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.2.1python3.6.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.2.1python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.2.1python3.7.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.2.1python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.2.1python3.8.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.2.1python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.2.1python3.9.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.2.1python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.2.2python3.6.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.2.2python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.2.2python3.7.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.2.2python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.2.2python3.8.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.2.2python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.2.2python3.9.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.2.2python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.2python3.6.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.2python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.2python3.7.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.2python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.2python3.8.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.2python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-      linux_ppc64le_major_minor_ver11.2python3.9.____cpython:
-        CONFIG: linux_ppc64le_major_minor_ver11.2python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-ppc64le
-    maxParallel: 34
   timeoutInMinutes: 360
 
   steps:

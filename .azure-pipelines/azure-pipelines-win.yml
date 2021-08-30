@@ -8,115 +8,33 @@ jobs:
     vmImage: vs2017-win2016
   strategy:
     matrix:
-      win_64_major_minor_ver10.0python3.6.____cpython:
-        CONFIG: win_64_major_minor_ver10.0python3.6.____cpython
+      win_64_major_minor_ver10.0:
+        CONFIG: win_64_major_minor_ver10.0
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver10.0python3.7.____cpython:
-        CONFIG: win_64_major_minor_ver10.0python3.7.____cpython
+      win_64_major_minor_ver10.1:
+        CONFIG: win_64_major_minor_ver10.1
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver10.0python3.8.____cpython:
-        CONFIG: win_64_major_minor_ver10.0python3.8.____cpython
+      win_64_major_minor_ver10.2:
+        CONFIG: win_64_major_minor_ver10.2
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver10.0python3.9.____cpython:
-        CONFIG: win_64_major_minor_ver10.0python3.9.____cpython
+      win_64_major_minor_ver11.0:
+        CONFIG: win_64_major_minor_ver11.0
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver10.1python3.6.____cpython:
-        CONFIG: win_64_major_minor_ver10.1python3.6.____cpython
+      win_64_major_minor_ver11.1:
+        CONFIG: win_64_major_minor_ver11.1
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver10.1python3.7.____cpython:
-        CONFIG: win_64_major_minor_ver10.1python3.7.____cpython
+      win_64_major_minor_ver11.2:
+        CONFIG: win_64_major_minor_ver11.2
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver10.1python3.8.____cpython:
-        CONFIG: win_64_major_minor_ver10.1python3.8.____cpython
+      win_64_major_minor_ver11.2.1:
+        CONFIG: win_64_major_minor_ver11.2.1
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver10.1python3.9.____cpython:
-        CONFIG: win_64_major_minor_ver10.1python3.9.____cpython
+      win_64_major_minor_ver11.2.2:
+        CONFIG: win_64_major_minor_ver11.2.2
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver10.2python3.6.____cpython:
-        CONFIG: win_64_major_minor_ver10.2python3.6.____cpython
+      win_64_major_minor_ver9.2:
+        CONFIG: win_64_major_minor_ver9.2
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver10.2python3.7.____cpython:
-        CONFIG: win_64_major_minor_ver10.2python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver10.2python3.8.____cpython:
-        CONFIG: win_64_major_minor_ver10.2python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver10.2python3.9.____cpython:
-        CONFIG: win_64_major_minor_ver10.2python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.0python3.6.____cpython:
-        CONFIG: win_64_major_minor_ver11.0python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.0python3.7.____cpython:
-        CONFIG: win_64_major_minor_ver11.0python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.0python3.8.____cpython:
-        CONFIG: win_64_major_minor_ver11.0python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.0python3.9.____cpython:
-        CONFIG: win_64_major_minor_ver11.0python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.1python3.6.____cpython:
-        CONFIG: win_64_major_minor_ver11.1python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.1python3.7.____cpython:
-        CONFIG: win_64_major_minor_ver11.1python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.1python3.8.____cpython:
-        CONFIG: win_64_major_minor_ver11.1python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.1python3.9.____cpython:
-        CONFIG: win_64_major_minor_ver11.1python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.2.1python3.6.____cpython:
-        CONFIG: win_64_major_minor_ver11.2.1python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.2.1python3.7.____cpython:
-        CONFIG: win_64_major_minor_ver11.2.1python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.2.1python3.8.____cpython:
-        CONFIG: win_64_major_minor_ver11.2.1python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.2.1python3.9.____cpython:
-        CONFIG: win_64_major_minor_ver11.2.1python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.2.2python3.6.____cpython:
-        CONFIG: win_64_major_minor_ver11.2.2python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.2.2python3.7.____cpython:
-        CONFIG: win_64_major_minor_ver11.2.2python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.2.2python3.8.____cpython:
-        CONFIG: win_64_major_minor_ver11.2.2python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.2.2python3.9.____cpython:
-        CONFIG: win_64_major_minor_ver11.2.2python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.2python3.6.____cpython:
-        CONFIG: win_64_major_minor_ver11.2python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.2python3.7.____cpython:
-        CONFIG: win_64_major_minor_ver11.2python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.2python3.8.____cpython:
-        CONFIG: win_64_major_minor_ver11.2python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.2python3.9.____cpython:
-        CONFIG: win_64_major_minor_ver11.2python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver9.2python3.6.____cpython:
-        CONFIG: win_64_major_minor_ver9.2python3.6.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver9.2python3.7.____cpython:
-        CONFIG: win_64_major_minor_ver9.2python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver9.2python3.8.____cpython:
-        CONFIG: win_64_major_minor_ver9.2python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver9.2python3.9.____cpython:
-        CONFIG: win_64_major_minor_ver9.2python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-    maxParallel: 16
   timeoutInMinutes: 360
   variables:
     CONDA_BLD_PATH: D:\\bld\\
