@@ -285,8 +285,6 @@ build:
   script_env:
     - NVTOOLSEXT_INSTALL_PATH
     - DEBUG_INSTALLER_PATH
-  ignore_run_exports_from:
-    - python
   missing_dso_whitelist:
     - "$RPATH/libdl.so.2"
     - "$RPATH/libpthread.so.0"
