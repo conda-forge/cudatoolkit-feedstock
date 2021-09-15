@@ -10,15 +10,19 @@ from numba.cuda.cudadrv.libs import test, get_cudalib
 from numba.cuda.cudadrv.nvvm import NVVM
 from packaging import version
 
+
 def run_test():
     nvvm = NVVM()
-    print("NVVM version", nvvm.get_version())
+    print("NVVM version:", nvvm.get_version())
+    print("Platform:", sys.platform)
+    print("Machine:", platform.machine())
 
     # on windows only nvvm is available to numba
     if sys.platform.startswith("win"):
         return nvvm.get_version() is not None
 
     libc_ver = version.parse(platform.libc_ver()[1])
+    print("GLIBC version:", libc_ver)
     # aarch64 requires GLIBC >= 2.27
     if platform.machine() == "aarch64" and libc_ver < version.parse("2.27"):
         print("WARNING: Skipping runtime tests on aarch64 as GLIBC version is lower than 2.27")
