@@ -102,6 +102,41 @@ Current build status
                 </a>
               </td>
             </tr><tr>
+              <td>linux_aarch64_major_minor_ver11.0</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_major_minor_ver11.0" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_major_minor_ver11.1</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_major_minor_ver11.1" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_major_minor_ver11.2</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_major_minor_ver11.2" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_major_minor_ver11.2.1</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_major_minor_ver11.2.1" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_major_minor_ver11.2.2</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_major_minor_ver11.2.2" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>linux_ppc64le_major_minor_ver10.2</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=master">
@@ -228,6 +263,7 @@ Installing `cudatoolkit` from the `conda-forge` channel can be achieved by addin
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
 Once the `conda-forge` channel has been enabled, `cudatoolkit` can be installed with:

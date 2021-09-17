@@ -5,7 +5,7 @@
 jobs:
 - job: linux
   pool:
-    vmImage: ubuntu-16.04
+    vmImage: ubuntu-latest
   strategy:
     matrix:
       linux_64_major_minor_ver10.0:
@@ -44,6 +44,26 @@ jobs:
         CONFIG: linux_64_major_minor_ver9.2
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      linux_aarch64_major_minor_ver11.0:
+        CONFIG: linux_aarch64_major_minor_ver11.0
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
+      linux_aarch64_major_minor_ver11.1:
+        CONFIG: linux_aarch64_major_minor_ver11.1
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
+      linux_aarch64_major_minor_ver11.2:
+        CONFIG: linux_aarch64_major_minor_ver11.2
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
+      linux_aarch64_major_minor_ver11.2.1:
+        CONFIG: linux_aarch64_major_minor_ver11.2.1
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
+      linux_aarch64_major_minor_ver11.2.2:
+        CONFIG: linux_aarch64_major_minor_ver11.2.2
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-aarch64
       linux_ppc64le_major_minor_ver10.2:
         CONFIG: linux_ppc64le_major_minor_ver10.2
         UPLOAD_PACKAGES: 'True'
