@@ -1,4 +1,4 @@
 conda_forge_output_validation: true
 provider: {linux_aarch64: azure, linux_ppc64le: azure}
 choco:
-- cuda --version=11.2.2.46133
+- cuda --version=11.4.2.47141
