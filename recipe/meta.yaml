@@ -278,7 +278,7 @@
     "download_dir": "11.3.1",
     "checksums": {
       "linux64": "065d2a85decd34afab7e135c009830ee",
-      "linux64": "822f4ebb38b5aa56a3e5e0d28e46cfc7",
+      "aarch64": "822f4ebb38b5aa56a3e5e0d28e46cfc7",
       "ppc64le": "a8fb4ee2900ebfaeba217d652a7484f1",
       "win": "7bf61cf7b059ba08197c70035879c352",
     },
@@ -344,7 +344,7 @@
     "version": "11.4.2",
     "version_patch": {
       "linux64": "470.57.02",
-      "linux64": "470.57.02",
+      "aarch64": "470.57.02",
       "osx": "skip",
       "ppc64le": "470.57.02",
       "win": "471.41",
@@ -359,7 +359,7 @@
     },
     "blob_ext": {
       "linux64": ".run",
-      "linux64": ".run",
+      "aarch64": ".run",
       "ppc64le": ".run",
       "win": ".exe",
     },
