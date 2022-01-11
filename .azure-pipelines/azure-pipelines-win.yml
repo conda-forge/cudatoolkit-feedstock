@@ -32,8 +32,8 @@ jobs:
       win_64_major_minor_ver11.4.2:
         CONFIG: win_64_major_minor_ver11.4.2
         UPLOAD_PACKAGES: 'True'
-      win_64_major_minor_ver11.5.0:
-        CONFIG: win_64_major_minor_ver11.5.0
+      win_64_major_minor_ver11.5.1:
+        CONFIG: win_64_major_minor_ver11.5.1
         UPLOAD_PACKAGES: 'True'
       win_64_major_minor_ver9.2:
         CONFIG: win_64_major_minor_ver9.2

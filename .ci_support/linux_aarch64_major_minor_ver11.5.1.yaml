@@ -21,7 +21,7 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-aarch64
 major_minor_ver:
-- 11.5.0
+- 11.5.1
 target_platform:
 - linux-aarch64
 zip_keys:
