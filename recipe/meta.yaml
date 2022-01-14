@@ -3,7 +3,7 @@
 # Copyright (c) 2017, Continuum Analytics, Inc. All rights reserved.
 #
 # Distribution of the content approved by NVIDIA ( http://nvbugs/3052604 )
-{% set major_minor = major_minor_ver|default("11.5.1") %}
+{% set major_minor = major_minor_ver|default("11.6.0") %}
 
 # The following cudavars dictionary is a table of metadata for selecting various
 # paramaters based on the X.Y version number of cudatoolkit. The following is a description
@@ -406,6 +406,31 @@
       "aarch64": "3293cbd114cf6ba68c25bd1ce766fdd8",
       "ppc64le": "fc5f3f8a2b58f52f232364164f3445d3",
       "win": "74d4a0723ca179f56f6877e72c9b1694",
+    },
+    "runfile_post": {
+      "aarch64": "_linux_sbsa.run",
+      "linux64": "_linux.run",
+      "ppc64le": "_linux_ppc64le.run",
+      "win": "_windows.exe",
+    },
+    "sysroot_version": "2.17",
+  },
+  "11.6.0": {
+    "version": "11.6.0",
+    "version_patch": {
+      "linux64": "510.39.01",
+      "aarch64": "510.39.01",
+      "osx": "skip",
+      "ppc64le": "510.39.01",
+      "win": "511.23",
+    },
+    "subdomain": "developer.download",
+    "download_dir": "11.6.0",
+    "checksums": {
+      "linux64": "685ef40564b829eb8e6892563e9d8b80",
+      "aarch64": "46c356f838d2c2b5da9cbfce5a8dafe4",
+      "ppc64le": "57093e65c60ce773058162a4b85d6c20",
+      "win": "7a91a7a7696e869ff8d90c52faf48f40",
     },
     "runfile_post": {
       "aarch64": "_linux_sbsa.run",
