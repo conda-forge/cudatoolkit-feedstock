@@ -443,6 +443,7 @@
 }
 %}
 {% set version = cudavars[major_minor]["version"] %}
+{% set major_version = version.split('.')[0]|int %}
 {% set version_patch = cudavars[major_minor]["version_patch"]["aarch64"] %}  # [aarch64]
 {% set version_patch = cudavars[major_minor]["version_patch"]["linux64"] %}  # [linux64]
 {% set version_patch = cudavars[major_minor]["version_patch"]["osx"] %}  # [osx]
@@ -481,7 +482,7 @@ source:
     md5: {{ cudavars[major_minor]["checksums"]["win"] }}  # [win]
 
 build:
-  number: 9
+  number: 10
   script_env:
     - NVTOOLSEXT_INSTALL_PATH
     - DEBUG_INSTALLER_PATH
@@ -522,7 +523,11 @@ requirements:
     - sysroot_linux-aarch64 {{ cudavars[major_minor]["sysroot_version"] }}  # [aarch64]
 {% endif %}
   run_constrained:
+{% if major_version < 11 %}
     - __cuda >={{ major_minor }}
+{% else %}
+    - __cuda >={{ major_version }}
+{% endif %}
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
 
 test:
