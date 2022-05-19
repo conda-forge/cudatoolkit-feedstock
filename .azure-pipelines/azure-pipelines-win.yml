@@ -38,6 +38,9 @@ jobs:
       win_64_major_minor_ver11.6.0:
         CONFIG: win_64_major_minor_ver11.6.0
         UPLOAD_PACKAGES: 'True'
+      win_64_major_minor_ver11.7.0:
+        CONFIG: win_64_major_minor_ver11.7.0
+        UPLOAD_PACKAGES: 'True'
       win_64_major_minor_ver9.2:
         CONFIG: win_64_major_minor_ver9.2
         UPLOAD_PACKAGES: 'True'
@@ -83,10 +86,9 @@ jobs:
 
       condition: contains(variables['CONFIG'], 'vs2008')
       displayName: Patch vs2008 (if needed)
-
     - task: CondaEnvironment@1
       inputs:
-        packageSpecs: 'python=3.9 conda-build conda "conda-forge-ci-setup=3" pip boa' # Optional
+        packageSpecs: 'python=3.9 conda-build conda pip boa conda-forge-ci-setup=3' # Optional
         installOptions: "-c conda-forge"
         updateConda: true
       displayName: Install conda-build and activate environment
