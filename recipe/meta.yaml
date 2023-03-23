@@ -573,6 +573,8 @@ requirements:
     - sysroot_linux-64 {{ cudavars[major_minor]["sysroot_version"] }}       # [linux64]
     - sysroot_linux-aarch64 {{ cudavars[major_minor]["sysroot_version"] }}  # [aarch64]
 {% endif %}
+  run:
+    - cuda-version {{ major_minor }}
   run_constrained:
 {% if major_version < 11 %}
     - __cuda >={{ major_minor }}
