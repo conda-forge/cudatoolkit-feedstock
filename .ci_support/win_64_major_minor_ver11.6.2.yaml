@@ -7,6 +7,6 @@ channel_targets:
 cxx_compiler:
 - vs2019
 major_minor_ver:
-- 11.4.2
+- 11.6.2
 target_platform:
 - win-64

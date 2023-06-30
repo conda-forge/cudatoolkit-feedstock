@@ -1,11 +1,11 @@
-About cudatoolkit
-=================
+About cudatoolkit-feedstock
+===========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/cudatoolkit-feedstock/blob/main/LICENSE.txt)
 
 Home: https://developer.nvidia.com/cuda-toolkit
 
 Package license: [LicenseRef-NVIDIA-End-User-License-Agreement](https://docs.nvidia.com/cuda/eula/index.html)
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/cudatoolkit-feedstock/blob/main/LICENSE.txt)
 
 Summary: CUDA Toolkit - Including CUDA runtime
 
@@ -88,31 +88,38 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_major_minor_ver11.4.2</td>
+              <td>linux_64_major_minor_ver11.4.3</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_major_minor_ver11.4.2" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_major_minor_ver11.4.3" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_major_minor_ver11.5.1</td>
+              <td>linux_64_major_minor_ver11.5.2</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_major_minor_ver11.5.1" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_major_minor_ver11.5.2" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_major_minor_ver11.6.0</td>
+              <td>linux_64_major_minor_ver11.6.1</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_major_minor_ver11.6.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_major_minor_ver11.6.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_major_minor_ver11.7.0</td>
+              <td>linux_64_major_minor_ver11.6.2</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_major_minor_ver11.7.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_major_minor_ver11.6.2" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_major_minor_ver11.7.1</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_major_minor_ver11.7.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -158,31 +165,38 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_major_minor_ver11.4.2</td>
+              <td>linux_aarch64_major_minor_ver11.4.3</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_major_minor_ver11.4.2" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_major_minor_ver11.4.3" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_major_minor_ver11.5.1</td>
+              <td>linux_aarch64_major_minor_ver11.5.2</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_major_minor_ver11.5.1" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_major_minor_ver11.5.2" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_major_minor_ver11.6.0</td>
+              <td>linux_aarch64_major_minor_ver11.6.1</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_major_minor_ver11.6.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_major_minor_ver11.6.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64_major_minor_ver11.7.0</td>
+              <td>linux_aarch64_major_minor_ver11.6.2</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_major_minor_ver11.7.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_major_minor_ver11.6.2" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_major_minor_ver11.7.1</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_major_minor_ver11.7.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -228,31 +242,38 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le_major_minor_ver11.4.2</td>
+              <td>linux_ppc64le_major_minor_ver11.4.3</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_major_minor_ver11.4.2" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_major_minor_ver11.4.3" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le_major_minor_ver11.5.1</td>
+              <td>linux_ppc64le_major_minor_ver11.5.2</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_major_minor_ver11.5.1" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_major_minor_ver11.5.2" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le_major_minor_ver11.6.0</td>
+              <td>linux_ppc64le_major_minor_ver11.6.1</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_major_minor_ver11.6.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_major_minor_ver11.6.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le_major_minor_ver11.7.0</td>
+              <td>linux_ppc64le_major_minor_ver11.6.2</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_major_minor_ver11.7.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_major_minor_ver11.6.2" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_major_minor_ver11.7.1</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_major_minor_ver11.7.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -312,31 +333,38 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>win_64_major_minor_ver11.4.2</td>
+              <td>win_64_major_minor_ver11.4.3</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=win&configuration=win%20win_64_major_minor_ver11.4.2" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=win&configuration=win%20win_64_major_minor_ver11.4.3" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>win_64_major_minor_ver11.5.1</td>
+              <td>win_64_major_minor_ver11.5.2</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=win&configuration=win%20win_64_major_minor_ver11.5.1" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=win&configuration=win%20win_64_major_minor_ver11.5.2" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>win_64_major_minor_ver11.6.0</td>
+              <td>win_64_major_minor_ver11.6.1</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=win&configuration=win%20win_64_major_minor_ver11.6.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=win&configuration=win%20win_64_major_minor_ver11.6.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>win_64_major_minor_ver11.7.0</td>
+              <td>win_64_major_minor_ver11.6.2</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=win&configuration=win%20win_64_major_minor_ver11.7.0" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=win&configuration=win%20win_64_major_minor_ver11.6.2" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64_major_minor_ver11.7.1</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10936&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cudatoolkit-feedstock?branchName=main&jobName=win&configuration=win%20win_64_major_minor_ver11.7.1" alt="variant">
                 </a>
               </td>
             </tr><tr>

@@ -1,13 +1,7 @@
-BUILD:
-- aarch64-conda_cos7-linux-gnu
-arm_variant_type:
-- sbsa
 c_compiler:
 - gcc
 c_compiler_version:
-- '10'
-cdt_arch:
-- aarch64
+- '12'
 cdt_name:
 - cos7
 channel_sources:
@@ -17,13 +11,13 @@ channel_targets:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '10'
+- '12'
 docker_image:
-- quay.io/condaforge/linux-anvil-aarch64
+- quay.io/condaforge/linux-anvil-cos7-x86_64
 major_minor_ver:
-- 11.7.0
+- 11.7.1
 target_platform:
-- linux-aarch64
+- linux-64
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
