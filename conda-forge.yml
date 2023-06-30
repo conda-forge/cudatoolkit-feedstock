@@ -9,8 +9,3 @@ github:
 provider:
   linux_aarch64: azure
   linux_ppc64le: azure
-# Pin `patchelf` to pre-0.18.0 to avoid corrupting binaries.
-# xref: https://github.com/conda-forge/conda-smithy/issues/1737
-remote_ci_setup:
-  - "conda-forge-ci-setup=3"
-  - "patchelf<0.18.0"
