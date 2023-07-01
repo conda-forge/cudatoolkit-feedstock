@@ -34,6 +34,7 @@ def run_test():
     #    return False
 
     extra_lib_tests = (
+        "cudart",  # check the runtime library is included
         "cublas",  # check pkg version matches lib pulled in
         "cufft",  # check cufft b/c cublas has an incorrect version in 10.1 update 1
         "cupti",  # check this is getting included
