@@ -28,8 +28,10 @@ def run_test():
         print("WARNING: Skipping runtime tests on aarch64 as GLIBC version is lower than 2.27")
         return nvvm.get_version() is not None
 
-    if not test():
-        return False
+    # Skip this test as it looks for the `libcuda.so` driver library,
+    # which is not included in the Docker image used here.
+    #if not test():
+    #    return False
 
     extra_lib_tests = (
         "cublas",  # check pkg version matches lib pulled in
