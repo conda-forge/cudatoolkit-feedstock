@@ -5,7 +5,7 @@ arm_variant_type:
 c_compiler:
 - gcc
 c_compiler_version:
-- '10'
+- '12'
 cdt_arch:
 - aarch64
 cdt_name:
@@ -17,11 +17,11 @@ channel_targets:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '10'
+- '12'
 docker_image:
 - quay.io/condaforge/linux-anvil-aarch64
 major_minor_ver:
-- 11.4.2
+- 11.5.2
 target_platform:
 - linux-aarch64
 zip_keys:

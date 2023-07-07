@@ -365,6 +365,31 @@
     },
     "sysroot_version": "2.17",
   },
+  "11.4.3": {
+    "version": "11.4.3",
+    "version_patch": {
+      "linux64": "470.82.01",
+      "aarch64": "470.82.01",
+      "osx": "skip",
+      "ppc64le": "470.82.01",
+      "win": "472.50",
+    },
+    "subdomain": "developer.download",
+    "download_dir": "11.4.3",
+    "checksums": {
+      "linux64": "e19a32d9cf7b089b2833b511fecc66a8",
+      "aarch64": "5b6bb157668933c702a110ebe9f7c8f9",
+      "ppc64le": "280c4d12d5bde3a03e1380253ebe00c1",
+      "win": "602bf92bddd198375f8f5b2aef9ad3f0",
+    },
+    "runfile_post": {
+      "aarch64": "_linux_sbsa.run",
+      "linux64": "_linux.run",
+      "ppc64le": "_linux_ppc64le.run",
+      "win": "_win10.exe",
+    },
+    "sysroot_version": "2.17",
+  },
   "11.5.0": {
     "version": "11.5.0",
     "version_patch": {
@@ -415,6 +440,31 @@
     },
     "sysroot_version": "2.17",
   },
+  "11.5.2": {
+    "version": "11.5.2",
+    "version_patch": {
+      "linux64": "495.29.05",
+      "aarch64": "495.29.05",
+      "osx": "skip",
+      "ppc64le": "495.29.05",
+      "win": "496.13",
+    },
+    "subdomain": "developer.download",
+    "download_dir": "11.5.2",
+    "checksums": {
+      "linux64": "2c33591bb5b33a3d4bffafdc7da76fe4",
+      "aarch64": "1ccc3785b4b55f5052c29fb863889b2e",
+      "ppc64le": "00235f89170754edfea1b093a8668c55",
+      "win": "7fd10dfd044ec3c11160468886d5b10d",
+    },
+    "runfile_post": {
+      "aarch64": "_linux_sbsa.run",
+      "linux64": "_linux.run",
+      "ppc64le": "_linux_ppc64le.run",
+      "win": "_windows.exe",
+    },
+    "sysroot_version": "2.17",
+  },
   "11.6.0": {
     "version": "11.6.0",
     "version_patch": {
@@ -440,6 +490,56 @@
     },
     "sysroot_version": "2.17",
   },
+  "11.6.1": {
+    "version": "11.6.1",
+    "version_patch": {
+      "linux64": "510.47.03",
+      "aarch64": "510.47.03",
+      "osx": "skip",
+      "ppc64le": "510.47.03",
+      "win": "511.65",
+    },
+    "subdomain": "developer.download",
+    "download_dir": "11.6.1",
+    "checksums": {
+      "linux64": "d0b0bbd4616cf3f46dfafae8b5a87e82",
+      "aarch64": "a9b21ebae943fa960ea217a5e8c2e4a7",
+      "ppc64le": "5d5f90dbbe675be9b206f94842ed8404",
+      "win": "3a5bc5062c401de24f5960cb8eb8156d",
+    },
+    "runfile_post": {
+      "aarch64": "_linux_sbsa.run",
+      "linux64": "_linux.run",
+      "ppc64le": "_linux_ppc64le.run",
+      "win": "_windows.exe",
+    },
+    "sysroot_version": "2.17",
+  },
+  "11.6.2": {
+    "version": "11.6.2",
+    "version_patch": {
+      "linux64": "510.47.03",
+      "aarch64": "510.47.03",
+      "osx": "skip",
+      "ppc64le": "510.47.03",
+      "win": "511.65",
+    },
+    "subdomain": "developer.download",
+    "download_dir": "11.6.2",
+    "checksums": {
+      "linux64": "2989d2d2a943fa5e2a1f29f660221788",
+      "aarch64": "5f00315cced1d192456cb53fcc2ca481",
+      "ppc64le": "4d45ebf7d92a1e89341e2133a7f818dd",
+      "win": "b5ca553bcf7e702a6bc454979aa87e65",
+    },
+    "runfile_post": {
+      "aarch64": "_linux_sbsa.run",
+      "linux64": "_linux.run",
+      "ppc64le": "_linux_ppc64le.run",
+      "win": "_windows.exe",
+    },
+    "sysroot_version": "2.17",
+  },
   "11.7.0": {
     "version": "11.7.0",
     "version_patch": {
@@ -456,6 +556,31 @@
       "aarch64": "ed51be95bf7b40d780aca296cb5e2013",
       "ppc64le": "f41b604ebeafc0e486a918744133e2eb",
       "win": "a2388d0044b2dd6a3469938eb6108c85",
+    },
+    "runfile_post": {
+      "aarch64": "_linux_sbsa.run",
+      "linux64": "_linux.run",
+      "ppc64le": "_linux_ppc64le.run",
+      "win": "_windows.exe",
+    },
+    "sysroot_version": "2.17",
+  },
+  "11.7.1": {
+    "version": "11.7.1",
+    "version_patch": {
+      "linux64": "515.65.01",
+      "aarch64": "515.65.01",
+      "osx": "skip",
+      "ppc64le": "515.65.01",
+      "win": "516.94",
+    },
+    "subdomain": "developer.download",
+    "download_dir": "11.7.1",
+    "checksums": {
+      "linux64": "cd470869c316fb7f389b3fdf34edec5f",
+      "aarch64": "fddf39a51c8505098c6ea726eb2f6c4e",
+      "ppc64le": "58eb97ac96bacda76e74c9dc6932ca5a",
+      "win": "2890ae7ba9b23591029ac24c8e2e805a",
     },
     "runfile_post": {
       "aarch64": "_linux_sbsa.run",
@@ -533,7 +658,7 @@ source:
     md5: {{ cudavars[major_minor]["checksums"]["win"] }}  # [win]
 
 build:
-  number: 11
+  number: 12
   script_env:
     - NVTOOLSEXT_INSTALL_PATH
     - DEBUG_INSTALLER_PATH
@@ -547,7 +672,7 @@ build:
 {% if version_patch == "skip" %}
   skip: true
 {% endif %}
-  rpaths_patcher: LIEF  # [ppc64le]
+  binary_relocation: false
   script: |
     echo {{ major_minor_ver }}
     python build.py --version={{ version }} --version-patch={{ version_patch }} --runfile={{ runfile }}

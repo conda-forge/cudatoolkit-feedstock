@@ -1,9 +1,11 @@
-conda_forge_output_validation: true
-provider: {linux_aarch64: azure, linux_ppc64le: azure}
 choco:
 - cuda --version=11.4.2.47141
+conda_build:
+  pkg_format: '2'
+conda_forge_output_validation: true
 github:
   branch_name: main
   tooling_branch_name: main
-conda_build:
-  pkg_format: '2'
+provider:
+  linux_aarch64: azure
+  linux_ppc64le: azure
