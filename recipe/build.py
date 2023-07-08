@@ -361,69 +361,73 @@ class LinuxExtractor(Extractor):
     def extract(self):
         os.chmod(self.runfile, 0o777)
         with tempdir() as tmpd:
-            if self.embedded_blob is not None:
-                with tempdir() as tmpd3:
+            with tempdir() as tmpd2:
+                if self.embedded_blob is not None:
+                    with tempdir() as tmpd3:
+                        cmd = [
+                            os.path.join(self.src_dir, self.runfile),
+                            "--extract=%s" % (tmpd3,),
+                            "--tmpdir=%s" % (tmpd2,),
+                            "--nox11",
+                            "--silent",
+                        ]
+                        check_call(cmd)
+                        # extract the embedded blob
+                        cmd = [
+                            os.path.join(tmpd3, self.embedded_blob),
+                            "-prefix",
+                            tmpd,
+                            "--tmpdir=%s" % (tmpd2,),
+                            "-noprompt",
+                            "--nox11",
+                        ]
+                        check_call(cmd)
+                else:
+                    # Current Nvidia's Linux based runfiles don't use embedded runfiles
+                    #
+                    # "--installpath" runfile command is used to install the toolkit to a specified
+                    #     directory with the contents and layout similar to an install to
+                    #     '/usr/local/cuda`
+                    # "--override" runfile command to disable the compiler check since we are not
+                    #     installing the driver here
+                    # "--nox11" runfile command prevents desktop GUI on local install
                     cmd = [
                         os.path.join(self.src_dir, self.runfile),
-                        "--extract=%s" % (tmpd3,),
+                        "--silent",
+                        "--override",
                         "--nox11",
+                        "--toolkit",
+                        "--tmpdir=%s" % (tmpd2,),
+                    ]
+                    check = True
+                    # add toolkit install args
+                    if self.major_minor >= (10, 2):
+                        cmd.append(f"--installpath={tmpd}")
+                    elif self.major_minor == (10, 1):
+                        # v10.1
+                        cmd.extend([
+                            f"--toolkitpath={tmpd}",
+                            f"--librarypath={tmpd}",
+                        ])
+                        if self.machine == "ppc64le":
+                            # cublas headers are not available, though the runfile
+                            # thinks that they are.
+                            check = False
+                    else:
+                        # <=10.0
+                        cmd.append(f"--toolkitpath={tmpd}")
+                    self.run_extract(cmd, check=check)
+                for p in self.patches:
+                    os.chmod(p, 0o777)
+                    cmd = [
+                        os.path.join(self.src_dir, p),
+                        "--installdir",
+                        tmpd,
+                        "--accept-eula",
                         "--silent",
                     ]
                     check_call(cmd)
-                    # extract the embedded blob
-                    cmd = [
-                        os.path.join(tmpd3, self.embedded_blob),
-                        "-prefix",
-                        tmpd,
-                        "-noprompt",
-                        "--nox11",
-                    ]
-                    check_call(cmd)
-            else:
-                # Current Nvidia's Linux based runfiles don't use embedded runfiles
-                #
-                # "--installpath" runfile command is used to install the toolkit to a specified
-                #     directory with the contents and layout similar to an install to
-                #     '/usr/local/cuda`
-                # "--override" runfile command to disable the compiler check since we are not
-                #     installing the driver here
-                # "--nox11" runfile command prevents desktop GUI on local install
-                cmd = [
-                    os.path.join(self.src_dir, self.runfile),
-                    "--silent",
-                    "--override",
-                    "--nox11",
-                    "--toolkit",
-                ]
-                check = True
-                # add toolkit install args
-                if self.major_minor >= (10, 2):
-                    cmd.append(f"--installpath={tmpd}")
-                elif self.major_minor == (10, 1):
-                    # v10.1
-                    cmd.extend([
-                        f"--toolkitpath={tmpd}",
-                        f"--librarypath={tmpd}",
-                    ])
-                    if self.machine == "ppc64le":
-                        # cublas headers are not available, though the runfile
-                        # thinks that they are.
-                        check = False
-                else:
-                    # <=10.0
-                    cmd.append(f"--toolkitpath={tmpd}")
-                self.run_extract(cmd, check=check)
-            for p in self.patches:
-                os.chmod(p, 0o777)
-                cmd = [
-                    os.path.join(self.src_dir, p),
-                    "--installdir",
-                    tmpd,
-                    "--accept-eula",
-                    "--silent",
-                ]
-                check_call(cmd)
-            self.copy(tmpd)
+                self.copy(tmpd)
 
 
 def getplatform():
