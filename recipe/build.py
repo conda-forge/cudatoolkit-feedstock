@@ -362,17 +362,17 @@ class LinuxExtractor(Extractor):
         os.chmod(self.runfile, 0o777)
         with tempdir() as tmpd:
             if self.embedded_blob is not None:
-                with tempdir() as tmpd2:
+                with tempdir() as tmpd3:
                     cmd = [
                         os.path.join(self.src_dir, self.runfile),
-                        "--extract=%s" % (tmpd2,),
+                        "--extract=%s" % (tmpd3,),
                         "--nox11",
                         "--silent",
                     ]
                     check_call(cmd)
                     # extract the embedded blob
                     cmd = [
-                        os.path.join(tmpd2, self.embedded_blob),
+                        os.path.join(tmpd3, self.embedded_blob),
                         "-prefix",
                         tmpd,
                         "-noprompt",
