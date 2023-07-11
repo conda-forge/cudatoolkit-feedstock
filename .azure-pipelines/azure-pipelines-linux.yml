@@ -156,6 +156,11 @@ jobs:
          df -h
     displayName: Manage disk space
 
+  steps:
+  - script: |
+         tree --du /
+    displayName: Show disk usage tree
+
   # configure qemu binfmt-misc running.  This allows us to run docker containers
   # embedded qemu-static
   - script: |
