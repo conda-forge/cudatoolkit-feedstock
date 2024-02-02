@@ -57,8 +57,8 @@ jobs:
 
   steps:
     - script: |
-        choco install cuda --version=11.4.2.47141 -fdv -y --debug
-      displayName: "Install Chocolatey Package: cuda --version=11.4.2.47141"
+        choco install cuda --version=11.8.0.52206 -fdv -y --debug
+      displayName: "Install Chocolatey Package: cuda --version=11.8.0.52206"
 
 
     - task: PythonScript@0
