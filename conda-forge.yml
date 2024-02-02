@@ -1,7 +1,7 @@
 azure:
   free_disk_space: true
 choco:
-- cuda --version=11.4.2.47141
+- cuda --version=11.8.0.52206
 conda_build:
   pkg_format: '2'
 conda_forge_output_validation: true
