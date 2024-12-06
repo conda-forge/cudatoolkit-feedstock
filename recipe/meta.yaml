@@ -736,6 +736,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - conda-forge/cuda
     - scopatz
     - mike-wendt
     - jakirkham
